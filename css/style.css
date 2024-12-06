@@ -1,0 +1,144 @@
+:root {
+	--dark-mode-color: #292929;
+	--light-mode-color: #fafafa;
+  --accentcolor-1: #a480f2;
+  --accentcolor-1-dark: #6053b0;
+  --accentcolor-2: #ea9ab2;
+  --accentcolor-2-dark: #e27396;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: var(--dark-mode-color);
+	color: var(--light-mode-color);
+}
+
+body.light-mode {
+	background-color: var(--light-mode-color);
+	color: var(--dark-mode-color);
+}
+
+nav {
+  display: flex;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  position: relative;
+  width: 100vw;
+  min-height: 10vh;
+  z-index: 10;
+  user-select: none;
+}
+
+.content {
+	margin-top: 20px;
+	padding: 20px;
+}
+
+.navbar-logo {
+	align-items: center;
+	display: flex;
+	flex: 7.5;
+	padding: 0 0 0 2vw;
+}
+
+.navbar-logo img {
+	width: 8vw;
+}
+
+.navbar-left {
+	align-items: center;
+	display: flex;
+	flex: 70;
+}
+
+.navbar-right {
+  align-items: center;
+  display: flex;
+  padding-right: 5vw;
+  flex: 12.5;
+}
+
+.navbar-links a {
+	align-items: center;
+	display: flex;
+	padding: 0 1vw;
+	text-decoration: none;
+	transition: 0.2s;
+	font-size: 1.125em;
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+.navbar-link-1-color,
+.navbar-link-2-color,
+.navbar-link-3-color {
+	color: var(--light-mode-color);
+}
+
+body.light-mode .navbar-link-1-color,
+body.light-mode .navbar-link-2-color,
+body.light-mode .navbar-link-3-color {
+	color: var(--dark-mode-color);
+}
+
+.navbar-link-4-color {
+	color: var(--accentcolor-1)
+}
+
+.navbar-link4-color:hover {
+	color: var(--accentcolor-1-dark);
+}
+
+.navbar-button-1 {
+	margin-right: 0.5vw;
+	border: 2px solid transparent;
+	border-radius: 10px;
+	padding: 1vh 1vw !important;
+	color: var(--accentcolor-1);
+}
+
+.navbar-button-1:hover {
+	border: 2px solid var(--accentcolor-1-dark);
+	color: var(--accentcolor-1-dark);
+}
+
+.navbar-button-2 {
+	border: 1px solid var(--accentcolor-1);
+	border-radius: 10px;
+	padding: 1vh 1vw !important;
+	background-color: var(--accentcolor-1);
+	color: var(--light-mode-color);
+}
+
+.navbar-button-2:hover {
+	border: 1px solid var(--accentcolor-1-dark);
+	background-color: var(--accentcolor-1-dark);
+	color: var(--light-mode-color);
+}
+
+.navbar-user-name {
+	padding: 0 1.1vw;
+	color: var(--light-mode-color);
+	font-size: 1.15em;
+	font-weight: 600;
+	cursor: default;
+}
+
+.navbar-user-img-box {
+	border-radius: 50%;
+	width: 48px;
+	height: 48px;
+	background-color: var(--accentcolor-1);
+	transition: 0.2s;
+	cursor: pointer;
+}
+
+.navbar-user-img-box:hover {
+	background-color: var(--accentcolor-1-dark);
+}
