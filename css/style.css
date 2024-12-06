@@ -19,11 +19,6 @@ body {
 	color: var(--light-mode-color);
 }
 
-body.light-mode {
-	background-color: var(--light-mode-color);
-	color: var(--dark-mode-color);
-}
-
 nav {
   display: flex;
   padding-top: 2vh;
@@ -48,7 +43,7 @@ nav {
 }
 
 .navbar-logo img {
-	width: 8vw;
+	width: 5vw;
 }
 
 .navbar-left {
@@ -79,12 +74,6 @@ nav {
 .navbar-link-2-color,
 .navbar-link-3-color {
 	color: var(--light-mode-color);
-}
-
-body.light-mode .navbar-link-1-color,
-body.light-mode .navbar-link-2-color,
-body.light-mode .navbar-link-3-color {
-	color: var(--dark-mode-color);
 }
 
 .navbar-link-4-color {
@@ -141,4 +130,16 @@ body.light-mode .navbar-link-3-color {
 
 .navbar-user-img-box:hover {
 	background-color: var(--accentcolor-1-dark);
+}
+
+/* Light mode settings */
+body.light-mode {
+	background-color: var(--light-mode-color);
+	color: var(--dark-mode-color);
+}
+
+body.light-mode .navbar-link-1-color,
+body.light-mode .navbar-link-2-color,
+body.light-mode .navbar-link-3-color {
+	color: var(--dark-mode-color);
 }
