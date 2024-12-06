@@ -3,8 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="fonts/css/solid.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="icon" href="imgs/logo.svg" type="image/svg">
+	<script>
+		window.onload = function () {
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", "php/create_db.php", true);
+			xhr.send();
+		};
+	</script>
 	<title>K1J LTD</title>
 </head>
 <body>
