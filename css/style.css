@@ -1,6 +1,8 @@
 :root {
 	--dark-mode-color: #292929;
+	--dark-mode-foreground: #161616;
 	--light-mode-color: #fafafa;
+	--light-mode-foreground: #c0c0c0;
   --accentcolor-1: #a480f2;
   --accentcolor-1-dark: #6053b0;
   --accentcolor-2: #ea9ab2;
@@ -20,6 +22,7 @@ body {
 }
 
 nav {
+	background-color: var(--dark-mode-foreground);
   display: flex;
   padding-top: 2vh;
   padding-bottom: 2vh;
@@ -70,17 +73,19 @@ nav {
 	white-space: nowrap;
 }
 
-.navbar-link-1-color,
-.navbar-link-2-color,
-.navbar-link-3-color {
+.navbar-link-1-color {
 	color: var(--light-mode-color);
 }
 
-.navbar-link-4-color {
+.navbar-link-1-color:hover {
+	color: var(--light-mode-foreground);
+}
+
+.navbar-link-2-color {
 	color: var(--accentcolor-1)
 }
 
-.navbar-link4-color:hover {
+.navbar-link2-color:hover {
 	color: var(--accentcolor-1-dark);
 }
 
@@ -135,11 +140,5 @@ nav {
 /* Light mode settings */
 body.light-mode {
 	background-color: var(--light-mode-color);
-	color: var(--dark-mode-color);
-}
-
-body.light-mode .navbar-link-1-color,
-body.light-mode .navbar-link-2-color,
-body.light-mode .navbar-link-3-color {
 	color: var(--dark-mode-color);
 }

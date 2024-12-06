@@ -23,14 +23,13 @@
 
 		<div class="navbar-links navbar-left">
 			<a class="navbar-link-1-color" href="index.php">Home</a>
-			<a class="navbar-link-2-color" href="#">Dashboard</a>
-			<a class="navbar-link-3-color" href="#">Placeholder</a>
+			<a class="navbar-link-1-color" href="#">Dashboard</a>
+			<a class="navbar-link-1-color" href="#">Placeholder</a>
 		</div>
 
 		<div class="navbar-links navbar-right">
-			<a class="navbar-link-4-color navbar-button-1" id="light-mode-toggle">Toggle Dark Mode</a>
-			<a class="navbar-link-4-color navbar-button-1" href="#">Login</a>
-			<a class="navbar-link-4-color navbar-button-2" href="#">Register</a>
+			<a class="navbar-link-2-color navbar-button-1" id="light-mode-toggle">Toggle Dark Mode</a>
+			<a class="navbar-link-2-color navbar-button-2" href="html/login.php">Login</a>
 		</div>
 	</nav>
 

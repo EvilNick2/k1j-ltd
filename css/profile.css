@@ -1,0 +1,64 @@
+:root {
+	--dark-mode-color: #292929;
+	--dark-mode-foreground: #161616;
+	--light-mode-color: #fafafa;
+	--light-mode-foreground: #c0c0c0;
+  --accentcolor-1: #a480f2;
+  --accentcolor-1-dark: #6053b0;
+  --accentcolor-2: #ea9ab2;
+  --accentcolor-2-dark: #e27396;
+}
+
+.login,
+.register {
+	width: 400px;
+	background-color: var(--dark-mode-foreground);
+	box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+	margin: 100px auto;
+	border-radius: 5px;
+}
+
+.login h1,
+.register h1 {
+	text-align: center;
+	color: var(--light-mode-color);
+	font-size: 24px;
+	padding: 20px 0 20px 0;
+	border-bottom: 1px solid var(--dark-mode-color);
+}
+
+.login form,
+.register form {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding-top: 20px;
+}
+
+.login form label,
+.register form label {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50px;
+	height: 50px;
+	background-color: var(--accentcolor-1);
+	color: var(--dark-mode-foreground);
+	border-radius: 5px 0 0 5px;
+}
+
+.login form input[type="password"],
+.register form input[type="password"],
+.login form input[type="text"],
+.register form input[type="text"],
+.login form input[type="email"],
+.register form input[type="email"] {
+	width: 310px;
+	background-color: var(--dark-mode-foreground);
+	color: var(--light-mode-color);
+	height: 50px;
+	border: 1px solid var(--dark-mode-color);
+	margin-bottom: 20px;
+	padding: 0 15px;
+	border-radius: 0 5px 5px 0;
+}

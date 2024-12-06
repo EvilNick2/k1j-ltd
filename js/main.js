@@ -13,11 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
 function toggleLightMode() {
 	document.body.classList.toggle("light-mode");
 	const isLightModeEnabled = document.body.classList.contains('light-mode');
-	console.log("Light mode anbled:", isLightModeEnabled);
 	if (isLightModeEnabled) {
 		localStorage.setItem("lightMode", "enabled");
 	} else {
 		localStorage.setItem("lightMode", "disabled");
 	}
-	console.log("Dark mode preference after toggle:", localStorage.getItem("lightMode"))
 }

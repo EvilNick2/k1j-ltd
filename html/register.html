@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../fonts/css/all.css">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/profile.css">
+	<link rel="icon" href="../imgs/logo.svg" type="image/svg">
+	<title>Register</title>
+</head>
+<body>
+	<nav>
+		<div class="navbar-logo">
+			<img src="../imgs/logo.svg" alt="K1J LTD Logo">
+		</div>
+
+		<div class="navbar-links navbar-left">
+			<a class="navbar-link-1-color" href="../index.php">Home</a>
+			<a class="navbar-link-1-color" href="#">Dashboard</a>
+			<a class="navbar-link-1-color" href="#">Placeholder</a>
+		</div>
+
+		<div class="navbar-links navbar-right">
+			<a class="navbar-link-2-color navbar-button-1" id="light-mode-toggle">Toggle Dark Mode</a>
+			<a class="navbar-link-2-color navbar-button-2" href="login.php">Login</a>
+		</div>
+	</nav>
+
+	<div class="register">
+		<h1>Register</h1>
+		<form action="../php/register.php" method="post" autocomplete="off">
+			<label for="username">
+				<i class="fas fa-user"></i>
+			</label>
+			<input type="text" name="username" placeholder="Username" id="username" required>
+			<label for="name">
+				<i class="fas fa-id-card"></i>
+			</label>
+			<input type="text" name="name" placeholder="John Doe" id="name" required>
+			<label for="password">
+				<i class="fas fa-lock"></i>
+			</label>
+			<input type="password" name="password" placeholder="Password" id="password" required>
+			<label for="email">
+				<i class="fas fa-envelope"></i>
+			</label>
+			<input type="email" name="email" placeholder="johndoe@gmail.com" id="email" required>
+			<input type="submit" value="Register">
+		</form>
+	</div>
+	<script src="../js/main.js"></script>
+</body>
+</html>
