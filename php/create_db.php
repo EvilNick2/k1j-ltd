@@ -21,7 +21,7 @@ sendSQLQuery($conn, $sql, "Database created successfully", "Error creating datab
 $conn->select_db(DATABASE_NAME);
 
 $sql = "CREATE TABLE IF NOT EXISTS users (
-	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	username VARCHAR(30) NOT NULL UNIQUE,
 	name VARCHAR(50) NOT NULL,
 	password VARCHAR(255) NOT NULL,
