@@ -1,37 +1,3 @@
-<div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="K1j Ltd" />
-
-  &#xa0;
-
-  <!-- <a href="https://k1jltd.netlify.app">Demo</a> -->
-</div>
-
-<h1 align="center">K1j Ltd</h1>
-
-<p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/EvilNick2/k1j-ltd?color=56BEB8">
-
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/EvilNick2/k1j-ltd?color=56BEB8">
-
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/EvilNick2/k1j-ltd?color=56BEB8">
-
-  <img alt="License" src="https://img.shields.io/github/license/EvilNick2/k1j-ltd?color=56BEB8">
-
-  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/EvilNick2/k1j-ltd?color=56BEB8" /> -->
-
-  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/EvilNick2/k1j-ltd?color=56BEB8" /> -->
-
-  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/EvilNick2/k1j-ltd?color=56BEB8" /> -->
-</p>
-
-<!-- Status -->
-
-<!-- <h4 align="center"> 
-	🚧  K1j Ltd 🚀 Under construction...  🚧
-</h4> 
-
-<hr> -->
-
 <p align="center">
   <a href="#dart-about">About</a> &#xa0; | &#xa0; 
   <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
@@ -46,44 +12,46 @@
 
 ## :dart: About ##
 
-Describe your project
+This project is for a mock occupational specialism for college. It is a solution for a made up retail company called "K1J LTD"
 
 ## :sparkles: Features ##
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+:heavy_check_mark: Register and Login System\
+:heavy_check_mark: Dashboard based analytics
 
 ## :rocket: Technologies ##
 
 The following tools were used in this project:
 
-- [Expo](https://expo.io/)
-- [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
+- [HTML](https://html.spec.whatwg.org/multipage/)
+- [CSS](https://www.w3.org/Style/CSS/Overview.en.html)
+- [JavaScript](https://ecma-international.org/publications-and-standards/standards/ecma-262/)
+- [jQuery](https://jquery.com/)
+- [XAMPP](https://www.apachefriends.org/)
+- [PHP](https://www.php.net/)
+- [SQL](https://www.mysql.com/)
 
 ## :white_check_mark: Requirements ##
 
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
+Before starting, you need to have [Git](https://git-scm.com) and [XAMPP](https://www.apachefriends.org/) installed.
 
 ## :checkered_flag: Starting ##
 
 ```bash
-# Clone this project
+# Clone this project into your XAMPP htdocs folder
 $ git clone https://github.com/EvilNick2/k1j-ltd
 
-# Access
-$ cd k1j-ltd
+# Open XAMPP and start the Apache and MySQL services
 
-# Install dependencies
-$ yarn
+# Navigate to k1j-ltd/php and create a file called config.php and input your SQL credentials in the format shown below
+<?php
+define('DATABASE_HOST', 'localhost');
+define('DATABASE_USER', 'root');
+define('DATABASE_PASS', '');
+define('DATABASE_NAME', 'bitd_db'); # Rename the database to whatever you want
+?>
 
-# Run the project
-$ yarn start
-
-# The server will initialize in the <http://localhost:3000>
+# Go to <http://localhost/k1j-ltd>
 ```
 
 ## :memo: License ##
