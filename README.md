@@ -48,7 +48,7 @@ $ git clone https://github.com/EvilNick2/k1j-ltd
 define('DATABASE_HOST', 'localhost');
 define('DATABASE_USER', 'root');
 define('DATABASE_PASS', '');
-define('DATABASE_NAME', 'bitd_db'); # Rename the database to whatever you want
+define('DATABASE_NAME', 'k1j_ltd'); # Rename the database to whatever you want
 ?>
 
 # Go to <http://localhost/k1j-ltd>
