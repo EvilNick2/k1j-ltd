@@ -38,14 +38,14 @@
 				<i class="fas fa-id-card"></i>
 			</label>
 			<input type="text" name="name" placeholder="John Doe" id="name" required>
-			<label for="password">
-				<i class="fas fa-lock"></i>
-			</label>
-			<input type="password" name="password" placeholder="Password" id="password" required>
 			<label for="email">
 				<i class="fas fa-envelope"></i>
 			</label>
 			<input type="email" name="email" placeholder="johndoe@gmail.com" id="email" required>
+			<label for="password">
+				<i class="fas fa-lock"></i>
+			</label>
+			<input type="password" name="password" placeholder="Password" id="password" required>
 			<input type="submit" value="Register">
 		</form>
 	</div>

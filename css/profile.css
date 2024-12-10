@@ -62,3 +62,28 @@
 	padding: 0 15px;
 	border-radius: 0 5px 5px 0;
 }
+
+.login form input[type="submit"],
+.register form input[type="submit"] {
+	width: 100%;
+	padding: 15px;
+	margin-top: 20px;
+	background-color: var(--accentcolor-1);
+	border: 0;
+	cursor: pointer;
+	font-weight: bold;
+	color: #ffffff;
+	transition: var(--dark-mode-color) 0.2;
+}
+
+.login form[action="register.php"] input[type="submit"],
+.register form input[type="submit"] {
+	margin-top: 0;
+	border-radius: 0 0 5px 5px;
+}
+
+.login form input[type="submit"]:hover,
+.register form input[type="submit"]:hover {
+	background-color: var(--accentcolor-1-dark);
+	transition: var(--accentcolor-1) 0.2s;
+}

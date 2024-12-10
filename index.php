@@ -1,9 +1,13 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="fonts/css/solid.css">
+	<link rel="stylesheet" href="fonts/css/all.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="icon" href="imgs/logo.svg" type="image/svg">
 	<script>
@@ -29,7 +33,12 @@
 
 		<div class="navbar-links navbar-right">
 			<a class="navbar-link-2-color navbar-button-1" id="light-mode-toggle">Toggle Dark Mode</a>
-			<a class="navbar-link-2-color navbar-button-2" href="html/login.php">Login</a>
+			<?php if (isset($_SESSION['loggedin'])): ?>
+				<?php $firstName = explode(' ', $_SESSION['name'])[0]; ?>
+				<a class="navbar-link-2-color navbar-button-2" href="html/profile.php"><?=htmlspecialchars($firstName, ENT_QUOTES)?></a>
+      <?php else: ?>
+        <a class="navbar-link-2-color navbar-button-2" href="html/login.php">Login</a>
+      <?php endif; ?>
 		</div>
 	</nav>
 
