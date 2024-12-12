@@ -1,4 +1,6 @@
 <?php
+include "php/config.php";
+
 session_start();
 ?>
 
@@ -10,13 +12,6 @@ session_start();
 	<link rel="stylesheet" href="fonts/css/all.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="icon" href="imgs/logo.svg" type="image/svg">
-	<script>
-		window.onload = function () {
-			var xhr = new XMLHttpRequest();
-			xhr.open("GET", "php/create_db.php", true);
-			xhr.send();
-		};
-	</script>
 	<title>K1J LTD</title>
 </head>
 <body>
