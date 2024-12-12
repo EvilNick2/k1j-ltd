@@ -1,3 +1,40 @@
+<?php
+include "../php/config.php";
+session_start();
+
+$message = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	$username = $_POST["username"];
+
+	$stmt = $conn->prepare("SELECT id, password, name FROM users WHERE username = ?");
+	$stmt->bind_param("s", $username);
+	$stmt->execute();
+	$stmt->store_result();
+	
+	if (!$stmt->num_rows > 0) {
+		$message = "User does not exist";
+	} else {
+		$stmt->bind_result($id, $password, $name);
+		$stmt->fetch();
+
+		if (!password_verify($_POST["password"], $password)) {
+			$message = "Password is incorrect";
+		} else {
+			$message = "Logged in successfully";
+			session_regenerate_id();
+			$_SESSION["loggedin"] = TRUE;
+			$_SESSION["username"] = $username;
+			$_SESSION["name"] = $name;
+			$_SESSION["id"] = $id;
+			header("Location: ../index.php");
+		}
+	}
+	$stmt->close();
+	$conn->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +66,7 @@
 
     <div class="login">
       <h1>Login</h1>
-      <form action="../php/authenticate.php" method="post" autocomplete="off">
+      <form method="post" autocomplete="off">
         <label for="username">
           <i class="fas fa-user"></i>
         </label>
@@ -38,14 +75,19 @@
             <i class="fas fa-lock"></i>
         </label>
         <input type="password" name="password" placeholder="Password" id="password" required>
-				<?php if (isset($_GET['error']) && $_GET['error'] == 1): ?>
-						<p style="color: red; text-align: center;">Incorrect username and/or password!</p>
-				<?php endif; ?>
         <input type="submit" value="Login">
         </form>
         <form action="register.php" method="get">
             <input type="submit" value="Register">
         </form>
+				<?php if ($message === "User does not exist" || $message === "Password is incorrect"): ?>
+					<style>
+						.login form[action="register.php"] input[type="submit"] {
+							border-radius: 0;
+						}
+					</style>
+					<div class="block"><?php echo $message ?></div>
+				<?php endif; ?>
     </div>
 	<script src="../js/main.js"></script>
 </body>
