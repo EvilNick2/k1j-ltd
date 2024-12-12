@@ -1,17 +1,49 @@
 <?php
-require_once '../php/config.php';
+include '../php/config.php';
 
 session_start();
 
 if (!isset($_SESSION['loggedin'])) {
-	header('Location: ../index.php');
+	header('Location: login.php');
 	exit;
 }
 
-$conn = mysqli_connect(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_NAME);
-if (mysqli_connect_errno()) {
-	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+$range = 100;
+
+$stmt = $conn->prepare("SELECT password, email, address FROM users WHERE id = ?");
+$stmt->bind_param("s", $_SESSION["id"]);
+$stmt->execute();
+$stmt->bind_result($password, $email, $address);
+$stmt->fetch();
+
+$stmt->close();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['generate_users'])) {
+	$randomUser = "user" . rand(1, $range);
+	$result = $conn->query("SELECT COUNT(*) as count FROM users WHERE username = '$randomUser'");
+	$row = $result->fetch_assoc();
+
+	if ($row['count'] == 0) {
+		for ($i = 1; $i <= $range; $i++) {
+			$randomUsername = "user$i";
+			$randomName = "User $i";
+			$randomEmail = "user$i@example.com";
+			$randomAddress = "Address $i";
+			$randomPassword = password_hash("password$i", PASSWORD_DEFAULT);
+
+			$sql = "INSERT INTO users (username, name, email, address, password) VALUES ('$randomUsername', '$randomName', '$randomEmail', '$randomAddress', '$randomPassword')";
+			if ($conn->query($sql) === TRUE) {
+				console_log("User $i created successfully");
+			} else {
+				console_log("Error creating user $i: " . $conn->error);
+			}
+		}
+	} else {
+		console_log("Users already exist in the database");
+	}
 }
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -46,6 +78,37 @@ if (mysqli_connect_errno()) {
       <?php endif; ?>
 		</div>
 	</nav>
+		<div class="content">
+			<h2>Profile Page</h2>
+			<div>
+					<p>Your account details are below:</p>
+					<table>
+							<tr>
+									<td>Username:</td>
+									<td><?=htmlspecialchars($_SESSION['username'], ENT_QUOTES)?></td>
+							</tr>							
+							<tr>
+									<td>Name:</td>
+									<td><?=htmlspecialchars($_SESSION['name'], ENT_QUOTES)?></td>
+							</tr>
+							<tr>
+									<td>Password:</td>
+									<td><?=htmlspecialchars($password, ENT_QUOTES)?></td>
+							</tr>
+							<tr>
+									<td>Email:</td>
+									<td><?=htmlspecialchars($email, ENT_QUOTES)?></td>
+							</tr>
+							<tr>
+								<td>Address:</td>
+								<td><?=htmlspecialchars($address, ENT_QUOTES)?></td>
+							</tr>
+					</table>
+						<form method="post">
+              <button type="submit" name="generate_users">Generate <?php echo $range ?> Users</button>
+            </form>
+			</div>
+	</div>
 	<script src="../js/main.js"></script>
 </body>
 </html>
