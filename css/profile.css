@@ -1,25 +1,14 @@
-:root {
-	--dark-mode-color: #292929;
-	--dark-mode-foreground: #161616;
-	--light-mode-color: #fafafa;
-	--light-mode-foreground: #c0c0c0;
-  --accentcolor-1: #a480f2;
-  --accentcolor-1-dark: #6053b0;
-  --accentcolor-2: #ea9ab2;
-  --accentcolor-2-dark: #e27396;
-}
-
 .login,
 .register {
 	width: 400px;
-	background-color: var(--dark-mode-foreground);
-	box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
 	margin: 100px auto;
 	border-radius: 5px;
 }
 
 .login h1,
 .register h1 {
+	background-color: var(--dark-mode-foreground);
+	box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
 	text-align: center;
 	color: var(--light-mode-color);
 	font-size: 24px;
@@ -29,6 +18,8 @@
 
 .login form,
 .register form {
+	background-color: var(--dark-mode-foreground);
+	box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -51,8 +42,8 @@
 .register form input[type="password"],
 .login form input[type="text"],
 .register form input[type="text"],
-.login form input[type="email"],
-.register form input[type="email"] {
+.login form input.email,
+.register form input.email {
 	width: 310px;
 	background-color: var(--dark-mode-foreground);
 	color: var(--light-mode-color);
@@ -72,7 +63,7 @@
 	border: 0;
 	cursor: pointer;
 	font-weight: bold;
-	color: #ffffff;
+	color: var(--light-mode-color);
 	transition: var(--dark-mode-color) 0.2;
 }
 
@@ -86,4 +77,54 @@
 .register form input[type="submit"]:hover {
 	background-color: var(--accentcolor-1-dark);
 	transition: var(--accentcolor-1) 0.2s;
+}
+
+.block {
+	background-color: var(--warning-color);
+	width: 400px;
+	height: auto;
+	color: var(--light-mode-color);
+	font-size: 1.7em;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin: auto;
+	z-index: -1;
+	border-radius: 0 0 20px 20px;
+	box-shadow: 2px 2px 4px var(--dark-mode-foreground);
+}
+
+/* Light mode settings */
+body.light-mode .login,
+body.light-mode .register {
+	background-color: var(--light-mode-foreground);
+}
+
+body.light-mode .login h1,
+body.light-mode .register h1 {
+	color: var(--dark-mode-color);
+	border-bottom: 1px solid var(--light-mode-color);
+}
+
+body.light-mode .login form label,
+body.light-mode .register form label {
+	color: var(--light-mode-foreground);
+}
+
+body.light-mode .login form input[type="password"],
+body.light-mode .register form input[type="password"],
+body.light-mode .login form input[type="text"],
+body.light-mode .register form input[type="text"],
+body.light-mode .login form input[type="email"],
+body.light-mode .register form input[type="email"] {
+	background-color: var(--light-mode-foreground);
+	color: var(--dark-mode-color);
+	border: 1px solid var(--light-mode-color);
+}
+
+body.light-mode .login form input[type="submit"],
+body.light-mode .register form input[type="submit"] {
+	color: var(--dark-mode-color);
+	transition: var(--light-mode-color) 0.2s;
 }
