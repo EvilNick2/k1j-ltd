@@ -2,6 +2,8 @@
 include '../php/config.php';
 $message = "";
 
+$currentPage = 'register';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$username = $_POST["username"];
 	$name = $_POST["name"];
@@ -46,22 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<title>Register</title>
 </head>
 <body>
-	<nav>
-		<div class="navbar-logo">
-			<img src="../imgs/logo.svg" alt="K1J LTD Logo">
-		</div>
-
-		<div class="navbar-links navbar-left">
-			<a class="navbar-link-1-color" href="../index.php">Home</a>
-			<a class="navbar-link-1-color" href="#">Dashboard</a>
-			<a class="navbar-link-1-color" href="#">Placeholder</a>
-		</div>
-
-		<div class="navbar-links navbar-right">
-			<a class="navbar-link-2-color navbar-button-1" id="light-mode-toggle">Toggle Dark Mode</a>
-			<a class="navbar-link-2-color navbar-button-2" href="login.php">Login</a>
-		</div>
-	</nav>
+	<?php include 'nav.php'; ?>
 
 	<div class="register">
 		<h1>Register</h1>
