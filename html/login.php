@@ -4,10 +4,12 @@ session_start();
 
 $message = "";
 
+$currentPage = 'login';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$username = $_POST["username"];
 
-	$stmt = $conn->prepare("SELECT id, password, name FROM users WHERE username = ?");
+	$stmt = $conn->prepare("SELECT id, password, name, rank FROM users WHERE username = ?");
 	$stmt->bind_param("s", $username);
 	$stmt->execute();
 	$stmt->store_result();
@@ -15,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (!$stmt->num_rows > 0) {
 		$message = "User does not exist";
 	} else {
-		$stmt->bind_result($id, $password, $name);
+		$stmt->bind_result($id, $password, $name, $rank);
 		$stmt->fetch();
 
 		if (!password_verify($_POST["password"], $password)) {
@@ -27,7 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$_SESSION["username"] = $username;
 			$_SESSION["name"] = $name;
 			$_SESSION["id"] = $id;
-			header("Location: ../index.php");
+			$_SESSION["rank"] = $rank;
+			header("Location: profile.php");
 		}
 	}
 	$stmt->close();
@@ -40,29 +43,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../fonts/css/all.css">
+	<link rel="stylesheet" href="../fonts/css/all.min.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="../css/profile.css">
 	<link rel="icon" href="../imgs/logo.svg" type="image/svg">
 	<title>Login</title>
 </head>
 <body>
-	<nav>
-		<div class="navbar-logo">
-			<img src="../imgs/logo.svg" alt="K1J LTD Logo">
-		</div>
-
-		<div class="navbar-links navbar-left">
-			<a class="navbar-link-1-color" href="../index.php">Home</a>
-			<a class="navbar-link-1-color" href="#">Dashboard</a>
-			<a class="navbar-link-1-color" href="#">Placeholder</a>
-		</div>
-
-		<div class="navbar-links navbar-right">
-			<a class="navbar-link-2-color navbar-button-1" id="light-mode-toggle">Toggle Dark Mode</a>
-			<a class="navbar-link-2-color navbar-button-2" href="profile.php">Profile</a>
-		</div>
-	</nav>
+	<?php include 'nav.php'; ?>
 
     <div class="login">
       <h1>Login</h1>
@@ -76,9 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </label>
         <input type="password" name="password" placeholder="Password" id="password" required>
         <input type="submit" value="Login">
-        </form>
-        <form action="register.php" method="get">
-            <input type="submit" value="Register">
         </form>
 				<?php if ($message === "User does not exist" || $message === "Password is incorrect"): ?>
 					<style>
