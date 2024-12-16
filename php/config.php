@@ -43,18 +43,29 @@ $sql = "CREATE TABLE IF NOT EXISTS users (
 	name VARCHAR(50) NOT NULL,
 	password VARCHAR(255) NOT NULL,
 	email VARCHAR(50) NOT NULL UNIQUE,
-	address VARCHAR(50) NOT NULL
+	address VARCHAR(50) NOT NULL,
+  rank ENUM('Customer', 'Employee', 'Supervisor', 'Manager', 'Director') NOT NULL DEFAULT 'Customer'
 )";
 sendSQLQuery($conn, $sql, "Table users created successfully", "Error creating users table");
 
-$sql = "CREATE TABLE IF NOT EXISTS employees (
-	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	username VARCHAR(30) NOT NULL UNIQUE,
-	name VARCHAR(50) NOT NULL,
-	password VARCHAR(255),
-	email VARCHAR(50) NOT NULL UNIQUE,
-	address VARCHAR(50) NOT NULL,
-	rank VARCHAR(40) NOT NULL
-)";
-sendSQLQuery($conn, $sql, "Table employees created successfully", "Error creating users table");
+$sql = "SELECT * FROM users WHERE username = 'director_user'";
+$result = $conn->query($sql);
+
+if ($result->num_rows == 0) {
+    $directorPassword = password_hash('admin', PASSWORD_DEFAULT);
+    $sql = "INSERT INTO users (username, name, password, email, address, rank) VALUES (
+        'director_user', 'Director Name', '$directorPassword', 'director@example.com', '123 Director St', 'Director'
+    )";
+    sendSQLQuery($conn, $sql, "Default Director user created successfully", "Error creating default Director user");
+} else {
+    console_log("Default Director user already exists");
+}
+
+$rankHierarchy = [
+		'Customer' => 1,
+		'Employee' => 2,
+		'Supervisor' => 3,
+		'Manager' => 4,
+		'Director' => 5
+];
 ?>
