@@ -14,7 +14,7 @@
 	font-size: 24px;
 	padding: 20px 0 20px 0;
 	border-bottom: 1px solid var(--dark-mode-color);
-	border-radius: 5px 0 0 5px;
+	border-radius: 5px 5px 0 0;
 }
 
 .login form,
@@ -25,6 +25,7 @@
 	flex-wrap: wrap;
 	justify-content: center;
 	padding-top: 20px;
+	border-radius: 0 0 5px 5px;
 }
 
 .login form label,
@@ -189,8 +190,16 @@ body.light-mode .register {
 
 body.light-mode .login h1,
 body.light-mode .register h1 {
+	background-color: var(--light-mode-foreground);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	color: var(--dark-mode-color);
 	border-bottom: 1px solid var(--light-mode-color);
+}
+
+body.light-mode .login form,
+body.light-mode .register form {
+	background-color: var(--light-mode-foreground);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 body.light-mode .login form label,
@@ -215,8 +224,13 @@ body.light-mode .register form input[type="submit"] {
 	transition: var(--light-mode-color) 0.2s;
 }
 
+body.light-mode .block {
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 body.light-mode .card {
 	background-color: var(--light-mode-foreground);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 body.light-mode .card table td {

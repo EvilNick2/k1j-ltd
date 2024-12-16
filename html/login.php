@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
 				<?php if ($message === "User does not exist" || $message === "Password is incorrect"): ?>
 					<style>
-						.login form[action="register.php"] input[type="submit"] {
+						.login form input[type="submit"] {
 							border-radius: 0;
 						}
 					</style>
