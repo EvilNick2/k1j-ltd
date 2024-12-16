@@ -2,7 +2,7 @@
 	--dark-mode-color: #292929;
 	--dark-mode-foreground: #161616;
 	--light-mode-color: #fafafa;
-	--light-mode-foreground: #c0c0c0;
+	--light-mode-foreground: #f0f0f0;
   --accentcolor-1: #a480f2;
   --accentcolor-1-dark: #6053b0;
   --accentcolor-2: #ea9ab2;
@@ -39,7 +39,7 @@ nav {
 	padding: 20px;
 }
 
-.navbar-logo {
+.logo {
 	user-select: none;
 	align-items: center;
 	display: flex;
@@ -47,24 +47,24 @@ nav {
 	padding: 0 0 0 2vw;
 }
 
-.navbar-logo img {
+.logo img {
 	width: 5vw;
 }
 
-.navbar-left {
+.left {
 	align-items: center;
 	display: flex;
 	flex: 70;
 }
 
-.navbar-right {
+.right {
   align-items: center;
   display: flex;
   padding-right: 5vw;
   flex: 12.5;
 }
 
-.navbar-links a {
+.links a {
 	align-items: center;
 	display: flex;
 	padding: 0 1vw;
@@ -75,50 +75,50 @@ nav {
 	white-space: nowrap;
 }
 
-.navbar-link-1-color {
+.link-1-color {
 	color: var(--light-mode-color);
 }
 
-.navbar-link-1-color:hover {
+.link-1-color:hover {
 	color: var(--light-mode-foreground);
 }
 
-.navbar-link-2-color {
+.link-2-color {
 	color: var(--accentcolor-1)
 }
 
-.navbar-link2-color:hover {
+.link-2-color:hover {
 	color: var(--accentcolor-1-dark);
 }
 
-.navbar-button-1 {
+.button-1 {
 	margin-right: 0.5vw;
 	border: 2px solid transparent;
 	border-radius: 10px;
-	padding: 1vh 1vw !important;
+	padding: 11px 19px !important;
 	color: var(--accentcolor-1);
 }
 
-.navbar-button-1:hover {
+.button-1:hover {
 	border: 2px solid var(--accentcolor-1-dark);
 	color: var(--accentcolor-1-dark);
 }
 
-.navbar-button-2 {
+.button-2 {
 	border: 1px solid var(--accentcolor-1);
 	border-radius: 10px;
-	padding: 1vh 1vw !important;
+	padding: 11px 19px !important;
 	background-color: var(--accentcolor-1);
 	color: var(--light-mode-color);
 }
 
-.navbar-button-2:hover {
+.button-2:hover {
 	border: 1px solid var(--accentcolor-1-dark);
 	background-color: var(--accentcolor-1-dark);
 	color: var(--light-mode-color);
 }
 
-.navbar-user-name {
+.user-name {
 	padding: 0 1.1vw;
 	color: var(--light-mode-color);
 	font-size: 1.15em;
@@ -126,7 +126,7 @@ nav {
 	cursor: default;
 }
 
-.navbar-user-img-box {
+.user-img-box {
 	border-radius: 50%;
 	width: 48px;
 	height: 48px;
@@ -135,7 +135,7 @@ nav {
 	cursor: pointer;
 }
 
-.navbar-user-img-box:hover {
+.user-img-box:hover {
 	background-color: var(--accentcolor-1-dark);
 }
 
