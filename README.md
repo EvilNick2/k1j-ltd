@@ -43,7 +43,7 @@ $ git clone https://github.com/EvilNick2/k1j-ltd
 
 # Open XAMPP and start the Apache and MySQL services
 
-# Navigate to k1j-ltd/php and eidt the file called config.php and input your SQL credentials in the format shown below
+# Navigate to k1j-ltd/php and edit the file called config.php and input your SQL credentials in the format shown below
 $DATABASE_HOST = "localhost";
 $DATABASE_USER = "root";
 $DATABASE_PASS = "";

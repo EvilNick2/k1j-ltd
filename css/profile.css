@@ -81,6 +81,11 @@
 	transition: var(--accentcolor-1) 0.2s;
 }
 
+.login button,
+.register button {
+
+}
+
 .block {
 	background-color: var(--warning-color);
 	width: 400px;
@@ -164,7 +169,7 @@
     border-color: var(--accentcolor-1);
 }
 
-.card form button[type="submit"] {
+.card button[type="submit"] {
     display: inline-block;
     width: 100%;
     background-color: var(--accentcolor-1);
@@ -178,7 +183,7 @@
     transition: background-color 0.2s ease-in-out;
 }
 
-.card form button[type="submit"]:hover {
+.card button[type="submit"]:hover {
     background-color: var(--accentcolor-1-dark);
 }
 
