@@ -4,13 +4,21 @@ $DATABASE_USER = "root";
 $DATABASE_PASS = "";
 $DATABASE_NAME = "k1j_ltd";
 
-$conn = new mysqli($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS);
-
-$sql = "CREATE DATABASE IF NOT EXISTS " . $DATABASE_NAME;
-
 function console_log($message) {
     echo "<script>console.log(" . json_encode($message) . ");</script>";
 }
+
+function sendSQLQuery($conn, $sqlQuery, $successMessage, $errorMessage) {
+	if ($conn->query($sqlQuery) === TRUE) {
+		console_log("{$successMessage}");
+	} else {
+		console_log("{$errorMessage}: " . $conn->error);
+	}
+}
+
+$conn = new mysqli($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS);
+
+$sql = "CREATE DATABASE IF NOT EXISTS " . $DATABASE_NAME;
 
 if ((mysqli_query($conn, $sql))) {
   if (mysqli_warning_count($conn) == 0) {
@@ -27,14 +35,6 @@ $conn = new mysqli($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAM
 
 if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
-}
-
-function sendSQLQuery($conn, $sqlQuery, $successMessage, $errorMessage) {
-	if ($conn->query($sqlQuery) === TRUE) {
-		console_log("{$successMessage}");
-	} else {
-		console_log("{$errorMessage}: " . $conn->error);
-	}
 }
 
 $sql = "CREATE TABLE IF NOT EXISTS users (
