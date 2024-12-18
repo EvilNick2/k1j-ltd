@@ -94,41 +94,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['generate_users'])) {
 		</div>
 
 		<div id="password-confirmation-form" class="login" style="display: none;">
-				<h1>Confirm Password</h1>
-				<form id="confirm-password-form" method="post">
-						<label for="confirm-password">
-								<i class="fas fa-lock"></i>
-						</label>
-						<input type="password" name="confirm-password" id="confirm-password" required>
-						<input type="submit" value="Confirm Password">
-				</form>
-		</div>
-
-		<div id="edit-profile-form" class="register" style="display: none;">
-			<h1>Edit Profile Information</h1>
-			<form method="post" action="../php/update_profile.php" autocomplete="off">
-				<label for="username">
-					<i class="fas fa-user"></i>
-				</label>
-				<input type="text" name="username" id="username" value="<?=htmlspecialchars($_SESSION['username'])?>" required>
-				<label for="name">
-					<i class="fas fa-id-card"></i>
-				</label>
-				<input type="text" name="name" id="name" value="<?=htmlspecialchars($_SESSION['name'], ENT_QUOTES)?>" required>
-				<label for="email">
-					<i class="fas fa-envelope"></i>
-				</label>
-				<input type="text" name="email" id="email" value="<?=htmlspecialchars($email, ENT_QUOTES)?>" required>
-				<label for="address">
-					<i class="fas fa-map-location-dot"></i>
-				</label>
-				<input type="text" name="address" id="address" value="<?=htmlspecialchars($address, ENT_QUOTES)?>" required>
-				<label for="password">
+			<h1>Confirm Password</h1>
+			<form id="confirm-password-form" method="post" action="../php/confirm_password.php">
+				<label for="confirm-password">
 					<i class="fas fa-lock"></i>
 				</label>
-				<input type="password" name="password" id="password">
-				<input type="submit" value="Submit Change">
+				<input type="password" name="confirm-password" id="confirm-password" required>
+				<input type="submit" value="Confirm Password">
 			</form>
+			<?php if (isset($_SESSION['message']) && ($_SESSION['message'] === "Password confirmation failed" || $_SESSION['message'] === "Invalid request method")): ?>
+				<style>
+					.login form input[type="submit"] {
+						border-radius: 0;
+					}
+				</style>
+				<div class="block"><?php echo $_SESSION['message']; ?></div>
+				<script>
+					document.addEventListener('DOMContentLoaded', function() {
+						document.getElementById('password-confirmation-form').style.display = 'block';
+						document.querySelector('.content h2').style.display = 'none';
+						document.querySelectorAll('.card').forEach(function(card) {
+							card.style.display = 'none';
+						});
+					});
+				</script>
+				<?php unset($_SESSION['message']); ?>
+			<?php endif; ?>
 		</div>
 
 		<?php if (in_array($rank, ['Supervisor', 'Manager', 'Director'])): ?>

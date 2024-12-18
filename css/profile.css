@@ -81,11 +81,6 @@
 	transition: var(--accentcolor-1) 0.2s;
 }
 
-.login button,
-.register button {
-
-}
-
 .block {
 	background-color: var(--warning-color);
 	width: 400px;

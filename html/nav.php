@@ -33,8 +33,6 @@ if (isset($currentPage) && $currentPage !== 'index') {
 			<?php else: ?>
 				<a class="link-2-color button-2" href="<?php echo $prefix; ?>html/login.php">Login</a>
 			<?php endif; ?>
-		<?php elseif (isset($currentPage) && $currentPage === 'register'): ?>
-			<a class="link-2-color button-2" href="<?php echo $prefix; ?>html/login.php">Login</a>
 		<?php else: ?>
 			<?php if (isset($_SESSION['loggedin'])): ?>
 				<?php $firstName = explode(' ', $_SESSION['name'])[0]; ?>

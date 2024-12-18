@@ -9,7 +9,7 @@ $currentPage = 'login';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$username = $_POST["username"];
 
-	$stmt = $conn->prepare("SELECT id, password, name, rank FROM users WHERE username = ?");
+	$stmt = $conn->prepare("SELECT id, password, name, rank, email, address FROM users WHERE username = ?");
 	$stmt->bind_param("s", $username);
 	$stmt->execute();
 	$stmt->store_result();
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (!$stmt->num_rows > 0) {
 		$message = "User does not exist";
 	} else {
-		$stmt->bind_result($id, $password, $name, $rank);
+		$stmt->bind_result($id, $password, $name, $rank, $email, $address);
 		$stmt->fetch();
 
 		if (!password_verify($_POST["password"], $password)) {
@@ -28,6 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$_SESSION["loggedin"] = TRUE;
 			$_SESSION["username"] = $username;
 			$_SESSION["name"] = $name;
+			$_SESSION["email"] = $email;
+			$_SESSION["address"] = $address;
 			$_SESSION["id"] = $id;
 			$_SESSION["rank"] = $rank;
 			header("Location: profile.php");
