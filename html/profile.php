@@ -1,7 +1,7 @@
 <?php
-include '../php/config.php';
-
 session_start();
+
+include '../php/config.php';
 
 if (!isset($_SESSION['loggedin'])) {
 	header('Location: login.php');
