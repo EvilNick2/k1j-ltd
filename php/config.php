@@ -48,13 +48,13 @@ $sql = "CREATE TABLE IF NOT EXISTS users (
 )";
 sendSQLQuery($conn, $sql, "Table users created successfully", "Error creating users table");
 
-$sql = "SELECT * FROM users WHERE username = 'director_user'";
+$sql = "SELECT * FROM users WHERE username = 'Jimmi'";
 $result = $conn->query($sql);
 
 if ($result->num_rows == 0) {
-    $directorPassword = password_hash('admin', PASSWORD_DEFAULT);
+    $directorPassword = password_hash('password', PASSWORD_DEFAULT);
     $sql = "INSERT INTO users (username, name, password, email, address, rank) VALUES (
-        'director_user', 'Director Name', '$directorPassword', 'director@example.com', '123 Director St', 'Director'
+        'Jimmi', 'Jimmi Browning', '$directorPassword', 'jimmi@example.com', '4 Privet Drive', 'Director'
     )";
     sendSQLQuery($conn, $sql, "Default Director user created successfully", "Error creating default Director user");
 } else {

@@ -28,5 +28,7 @@ if (!in_array($_SESSION['rank'], ['Employee', 'Supervisor', 'Manager', 'Director
 </head>
 <body>
 	<?php include 'nav.php'; ?>
+	
+	<script src="../js/main.js"></script>
 </body>
 </html>

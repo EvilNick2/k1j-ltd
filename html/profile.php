@@ -11,6 +11,7 @@ if (!isset($_SESSION['loggedin'])) {
 $currentPage = 'profile';
 
 $range = 100;
+$maxResultsPerRequest = 100;
 
 $stmt = $conn->prepare("SELECT password, email, address, rank FROM users WHERE id = ?");
 $stmt->bind_param("s", $_SESSION["id"]);
@@ -20,27 +21,45 @@ $stmt->fetch();
 $stmt->close();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['generate_users'])) {
-	$randomUser = "user" . rand(1, $range);
-	$result = $conn->query("SELECT COUNT(*) as count FROM users WHERE username = '$randomUser'");
-	$row = $result->fetch_assoc();
+	$numRequests = ceil($range / $maxResultsPerRequest);
+	$allUsers = [];
 
-	if ($row['count'] == 0) {
-		for ($i = 1; $i <= $range; $i++) {
-			$randomUsername = "user$i";
-			$randomName = "User $i";
-			$randomEmail = "user$i@example.com";
-			$randomAddress = "Address $i";
-			$randomPassword = password_hash("password$i", PASSWORD_DEFAULT);
+	for ($j = 0; $j < $numRequests; $j++) {
+		$results = min($maxResultsPerRequest, $range - ($j * $maxResultsPerRequest));
+		$response = file_get_contents('https://randomuser.me/api/?results=' . $results . '&nat=GB');
+		$userData = json_decode($response, true);
 
-			$sql = "INSERT INTO users (username, name, email, address, password) VALUES ('$randomUsername', '$randomName', '$randomEmail', '$randomAddress', '$randomPassword')";
-			if ($conn->query($sql) === TRUE) {
-				console_log("User $i created successfully");
-			} else {
-				console_log("Error creating user $i: " . $conn->error);
-			}
+		if (!file_exists(__DIR__ . '/../logs')) {
+			mkdir(__DIR__ . '/../logs', 0777, true);
 		}
-	} else {
-		console_log("Users already exist in the database");
+
+		$timestamp = date('Ymd-His');
+		file_put_contents(__DIR__ . "/../logs/random_users_{$timestamp}_$j.json", $response);
+
+		if ($userData && isset($userData['results'])) {
+			$allUsers = array_merge($allUsers, $userData['results']);
+		} else {
+			console_log("Error fetching user data from API");
+		}
+	}
+
+	foreach ($allUsers as $i => $user) {
+		$randomUsername = $user['login']['username'];
+		$randomName = $user['name']['first'] . ' ' . $user['name']['last'];
+		$randomEmail = $user['email'];
+		$randomAddress = $user['location']['street']['number'] . ' ' . $user['location']['street']['name'];
+		$randomPassword = password_hash($user['login']['password'], PASSWORD_DEFAULT);
+
+		$stmt = $conn->prepare("INSERT INTO users (username, name, email, address, password) VALUES (?, ?, ?, ?, ?)");
+		$stmt->bind_param('sssss', $randomUsername, $randomName, $randomEmail, $randomAddress, $randomPassword);
+
+		if ($stmt->execute()) {
+			console_log("User " . ($i + 1) . " created successfully");
+		} else {
+			console_log("Error creating user " . ($i + 1) . ": " . $stmt->error);
+		}
+
+		$stmt->close();
 	}
 }
 ?>
