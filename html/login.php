@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							border-radius: 0;
 						}
 					</style>
-					<div class="block"><?php echo $message ?></div>
+					<div class="dialog-warning"><?php echo $message ?></div>
 				<?php endif; ?>
     </div>
 	<script src="../js/main.js"></script>

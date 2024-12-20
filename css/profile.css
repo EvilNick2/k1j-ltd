@@ -81,7 +81,23 @@
 	transition: var(--accentcolor-1) 0.2s;
 }
 
-.block {
+.dialog-success {
+	background-color: var(--success-color);
+	width: 400px;
+	height: auto;
+	color: var(--light-mode-color);
+	font-size: 1.7em;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin: auto;
+	z-index: -1;
+	border-radius: 0 0 20px 20px;
+	box-shadow: 2px 2px 4px var(--dark-mode-foreground);
+}
+
+.dialog-warning {
 	background-color: var(--warning-color);
 	width: 400px;
 	height: auto;

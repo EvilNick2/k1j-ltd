@@ -26,12 +26,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	if ($rankHierarchy[$_SESSION['rank']] < $rankHierarchy[$current_rank]) {
 		$_SESSION['message'] = "You do not have permission to change the rank of {$username}";
+		$_SESSION['message_type'] = "warning";
 		header('Location: ../html/profile.php');
 		exit;
 	}
 
 	if ($rankHierarchy[$_SESSION['rank']] < $rankHierarchy[$new_rank]) {
 		$_SESSION['message'] = "You do not have permission to assign {$new_rank}";
+		$_SESSION['message_type'] = "warning";
 		header('Location: ../html/profile.php');
 		exit;
 	}
@@ -41,8 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	if ($stmt->execute()) {
 		$_SESSION['message'] = "{$username}'s rank updated successfully";
+		$_SESSION['message_type'] = "success";
 	} else {
 		$_SESSION['message'] = "Error updating {$username}'s rank";
+		$_SESSION['message_type'] = "warning";
 	}
 
 	$stmt->close();

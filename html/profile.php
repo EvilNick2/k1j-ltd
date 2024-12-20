@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['generate_users'])) {
 						border-radius: 0;
 					}
 				</style>
-				<div class="block"><?php echo $_SESSION['message']; ?></div>
+				<div class="dialog-warning"><?php echo $_SESSION['message']; ?></div>
 				<script>
 					document.addEventListener('DOMContentLoaded', function() {
 						document.getElementById('password-confirmation-form').style.display = 'block';
@@ -175,7 +175,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['generate_users'])) {
 					<button type="submit">Change Rank</button>
 				</form>
 
-				<?php if (isset($_SESSION['message'])): ?>
+				<?php if (isset($_SESSION['message']) && isset($_SESSION['message_type'])): ?>
+					<?php if ($_SESSION['message_type'] === "success"): ?>
+						<div class="dialog-success"><?php echo $_SESSION['message'] ?></div>
+					<?php else: ?>
+						<div class="dialog-warning"><?php echo $_SESSION['message'] ?></div>
+					<?php endif; ?>
 					<?php console_log($_SESSION['message']); ?>
 					<?php unset($_SESSION['message']); ?>
 				<?php endif; ?>
