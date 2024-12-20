@@ -52,20 +52,30 @@ $sql = "SELECT * FROM users WHERE username = 'Jimmi'";
 $result = $conn->query($sql);
 
 if ($result->num_rows == 0) {
-    $directorPassword = password_hash('password', PASSWORD_DEFAULT);
-    $sql = "INSERT INTO users (username, name, password, email, address, rank) VALUES (
-        'Jimmi', 'Jimmi Browning', '$directorPassword', 'jimmi@example.com', '4 Privet Drive', 'Director'
-    )";
-    sendSQLQuery($conn, $sql, "Default Director user created successfully", "Error creating default Director user");
+	$directorPassword = password_hash('password', PASSWORD_DEFAULT);
+	$sql = "INSERT INTO users (username, name, password, email, address, rank) VALUES (
+		'Jimmi', 'Jimmi Browning', '$directorPassword', 'jimmi@example.com', '4 Privet Drive', 'Director'
+	)";
+	sendSQLQuery($conn, $sql, "Default Director user created successfully", "Error creating default Director user");
 } else {
-    console_log("Default Director user already exists");
+	console_log("Default Director user already exists");
 }
 
 $rankHierarchy = [
-		'Customer' => 1,
-		'Employee' => 2,
-		'Supervisor' => 3,
-		'Manager' => 4,
-		'Director' => 5
+	'Customer' => 1,
+	'Employee' => 2,
+	'Supervisor' => 3,
+	'Manager' => 4,
+	'Director' => 5
 ];
+
+$sql = "CREATE TABLE IF NOT EXISTS products (
+	product_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(255) NOT NULL,
+	description TEXT,
+	price DECIMAL(10, 2),
+	category VARCHAR(255),
+	stock INT UNSIGNED
+)";
+sendSQLQuery($conn, $sql, "Products table created successfully", "Error creating products table");
 ?>
