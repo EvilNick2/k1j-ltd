@@ -127,6 +127,7 @@ $conn->close();
 							<th class="table-cell align-left">Category</th>
 							<th class="table-cell align-right">Price</th>
 							<th class="table-cell align-left">Status</th>
+							<th class="table-cell align-left">Stock</th>
 							<th class="table-cell align-left">Created at</th>
 							<th class="table-cell align-left">Updated at</th>
 						</tr>

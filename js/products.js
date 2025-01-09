@@ -385,6 +385,7 @@ class ProductTableApp {
         <td class="table-cell align-left">${product.category}</td>
         <td class="table-cell align-right">&pound; ${product.price}</td>
         <td class="table-cell align-left">${stockIcon}</td>
+        <td class="table-cell align-left">${product.stock}</td>
         <td class="table-cell align-left">${product.created_at}</td>
         <td class="table-cell align-left">${product.updated_at}</td>
       </tr>
