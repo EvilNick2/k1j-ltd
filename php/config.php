@@ -3,9 +3,13 @@ $DATABASE_HOST = "localhost";
 $DATABASE_USER = "root";
 $DATABASE_PASS = "";
 $DATABASE_NAME = "k1j_ltd";
+$DEBUG_MODE = false;
 
 function console_log($message) {
-    echo "<script>console.log(" . json_encode($message) . ");</script>";
+    global $DEBUG_MODE;
+    if ($DEBUG_MODE) {
+        echo "<script>console.log(" . json_encode($message) . ");</script>";
+    }
 }
 
 function sendSQLQuery($conn, $sqlQuery, $successMessage, $errorMessage) {
@@ -70,12 +74,16 @@ $rankHierarchy = [
 ];
 
 $sql = "CREATE TABLE IF NOT EXISTS products (
-	product_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	name VARCHAR(255) NOT NULL,
-	description TEXT,
-	price DECIMAL(10, 2),
-	category VARCHAR(255),
-	stock INT UNSIGNED
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    brand VARCHAR(255),
+    name VARCHAR(255) NOT NULL,
+    category VARCHAR(255),
+    price DECIMAL(10, 2),
+    description TEXT,
+    stock INT UNSIGNED,
+    stocked BOOLEAN,
+    created_at DATETIME,
+    updated_at DATETIME
 )";
 sendSQLQuery($conn, $sql, "Products table created successfully", "Error creating products table");
 ?>
