@@ -51,13 +51,13 @@ $sql = "CREATE TABLE IF NOT EXISTS users (
 )";
 sendSQLQuery($conn, $sql, "Table users created successfully", "Error creating users table");
 
-$sql = "SELECT * FROM users WHERE username = 'Jimmi'";
+$sql = "SELECT * FROM users WHERE username = 'Director'";
 $result = $conn->query($sql);
 
 if ($result->num_rows == 0) {
 	$directorPassword = password_hash('password', PASSWORD_DEFAULT);
 	$sql = "INSERT INTO users (username, name, password, email, address, rank) VALUES (
-		'Jimmi', 'Jimmi Browning', '$directorPassword', 'jimmi@example.com', '4 Privet Drive', 'Director'
+		'Director', 'Admin User', '$directorPassword', 'director@example.com', '10 Downing Street', 'Director'
 	)";
 	sendSQLQuery($conn, $sql, "Default Director user created successfully", "Error creating default Director user");
 } else {
@@ -85,4 +85,12 @@ $sql = "CREATE TABLE IF NOT EXISTS products (
     updated_at DATETIME
 )";
 sendSQLQuery($conn, $sql, "Products table created successfully", "Error creating products table");
+
+$sql = "CREATE TABLE IF NOT EXISTS user_analytics (
+    username VARCHAR(30) NOT NULL PRIMARY KEY,
+    last_login DATETIME DEFAULT CURRENT_TIMESTAMP,
+    login_count INT UNSIGNED DEFAULT 0,
+    FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE
+)";
+sendSQLQuery($conn, $sql, "User analytics table created successfully", "Error creating user analytics table");
 ?>

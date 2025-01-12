@@ -4,8 +4,8 @@ session_start();
 include '../php/config.php';
 
 if (!isset($_SESSION['loggedin'])) {
-	header('Location: login.php');
-	exit;
+    header('Location: login.php');
+    exit;
 }
 
 $currentPage = 'profile';
@@ -50,16 +50,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['generate_users'])) {
 		$randomAddress = $user['location']['street']['number'] . ' ' . $user['location']['street']['name'];
 		$randomPassword = password_hash($user['login']['password'], PASSWORD_DEFAULT);
 
-		$stmt = $conn->prepare("INSERT INTO users (username, name, email, address, password) VALUES (?, ?, ?, ?, ?)");
-		$stmt->bind_param('sssss', $randomUsername, $randomName, $randomEmail, $randomAddress, $randomPassword);
+		$checkStmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+		$checkStmt->bind_param('s', $randomUsername);
+		$checkStmt->execute();
+		$checkStmt->store_result();
 
-		if ($stmt->execute()) {
-			console_log("User " . ($i + 1) . " created successfully");
+		if ($checkStmt->num_rows == 0) {
+				$stmt = $conn->prepare("INSERT INTO users (username, name, email, address, password) VALUES (?, ?, ?, ?, ?)");
+				$stmt->bind_param('sssss', $randomUsername, $randomName, $randomEmail, $randomAddress, $randomPassword);
+
+				if ($stmt->execute()) {
+					console_log("User " . ($i + 1) . " created successfully");
+
+					$analyticsStmt = $conn->prepare("INSERT INTO user_analytics (username, last_login, login_count) VALUES (?, NOW(), 0)");
+					$analyticsStmt->bind_param('s', $randomUsername);
+					$analyticsStmt->execute();
+					$analyticsStmt->close();
+				} else {
+					console_log("Error creating user " . ($i + 1) . ": " . $stmt->error);
+				}
+
+				$stmt->close();
 		} else {
-			console_log("Error creating user " . ($i + 1) . ": " . $stmt->error);
+			console_log("Username " . $randomUsername . " already exists, skipping user " . ($i + 1));
 		}
 
-		$stmt->close();
+		$checkStmt->close();
 	}
 }
 ?>
@@ -81,6 +97,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['generate_users'])) {
 	<div class="content">
 		<h2>Profile Page</h2>
 		
+		<?php if (password_verify("password", $password)): ?>
+			<div class="card" style="color: red; font-size: 2em;">
+				<p><strong>Warning:</strong> You are using the default password. Please change your password immediately by clicking edit profile.</p>
+			</div>
+		<?php endif; ?>
+
 		<div class="card">
 			<p>Your account details are below:</p>
 			<table>

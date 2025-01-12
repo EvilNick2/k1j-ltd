@@ -32,6 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$_SESSION["address"] = $address;
 			$_SESSION["id"] = $id;
 			$_SESSION["rank"] = $rank;
+
+			$analyticsStmt = $conn->prepare("INSERT INTO user_analytics (username, last_login, login_count) VALUES (?, NOW(), 1) ON DUPLICATE KEY UPDATE LAST_LOGIN = NOW(), LOGIN_COUNT = LOGIN_COUNT + 1");
+			$analyticsStmt->bind_param("s", $username);
+			$analyticsStmt->execute();
+			$analyticsStmt->close();
+
 			header("Location: profile.php");
 		}
 	}

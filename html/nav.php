@@ -12,7 +12,7 @@ if (isset($currentPage) && $currentPage !== 'index') {
 
 	<div class="links left">
 		<a class="link-1-color" href="<?php echo $prefix; ?>index.php">Home</a>
-		<a class="link-1-color" href="#">Dashboard</a>
+		<a class="link-1-color" href="<?php echo $prefix; ?>html/dashboard.php">Analytics</a>
 		<?php if (isset($_SESSION['rank']) && $rankHierarchy[$_SESSION['rank']] >= $rankHierarchy['Employee']): ?>
 			<a class="link-1-color" href="<?php echo $prefix; ?>html/products.php">Products</a>
 		<?php endif; ?>

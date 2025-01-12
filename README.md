@@ -50,6 +50,11 @@ $DATABASE_PASS = "";
 $DATABASE_NAME = "k1j_ltd"; # Rename the database to whatever you want
 
 # Go to <http://localhost/k1j-ltd>
+
+# The default admin user credentials are
+$ Username: Director
+$ Password: password
+# These credentials should be changed ASAP for security purposes
 ```
 
 ## :memo: License ##
