@@ -1,4 +1,3 @@
-// Main entry point
 $(function () {
   new ProductTableApp($('#product-table-app'), '../php/fetchProducts.php');
 });
@@ -17,7 +16,6 @@ class ProductTableApp {
     this.defineBaseElements();
     this.renderLoading();
 
-    // Fetch data
     this.fetchData(url)
       .then((products) => this.handleFetchSuccess(products))
       .catch((err) => this.handleFetchError(err));
@@ -28,15 +26,21 @@ class ProductTableApp {
    * -----------------------------
    */
   initState() {
-    this.state = {
-      isLoaded: false,
-      products: [],
-      error: null,
-      pagination: {
-        currentPage: 1,
-        itemsPerPage: 18, // Customize items per page
-      },
-    };
+      const itemHeight = 75;
+      const viewportHeight = window.innerHeight;
+      const itemsPerPage = Math.floor(viewportHeight / itemHeight);
+      console.log(itemsPerPage);
+      console.log(viewportHeight);
+
+      this.state = {
+          isLoaded: false,
+          products: [],
+          error: null,
+          pagination: {
+              currentPage: 1,
+              itemsPerPage: itemsPerPage,
+          },
+      };
   }
 
   /**
@@ -78,13 +82,10 @@ class ProductTableApp {
     this.state.isLoaded = true;
     this.state.products = products;
 
-    // Now we can define additional elements that depend on product data
     this.populateFilterOptions();
 
-    // Initial render
     this.render(products);
 
-    // Bind interactions
     this.bindEvents();
   }
 
@@ -98,16 +99,13 @@ class ProductTableApp {
    * -----------------------------
    */
   bindEvents() {
-    // Ensure `this` is bound
     this.handleTableChange = this.handleTableChange.bind(this);
     this.handlePrevPage = this.handlePrevPage.bind(this);
     this.handleNextPage = this.handleNextPage.bind(this);
 		this.handleGoPage = this.handleGoPage.bind(this);
 
-    // Table filter/sort triggers
     this.$handleTable.on('change', this.handleTableChange);
 
-    // Pagination triggers
     this.$prevPageBtn.on('click', this.handlePrevPage);
     this.$nextPageBtn.on('click', this.handleNextPage);
 		this.$goPageBtn.on('click', this.handleGoPage);
@@ -118,7 +116,6 @@ class ProductTableApp {
   }
 
   handlePrevPage() {
-    // Decrease current page if possible
     if (this.state.pagination.currentPage > 1) {
       this.state.pagination.currentPage -= 1;
       this.render();
@@ -131,7 +128,6 @@ class ProductTableApp {
       filteredProducts.length / this.state.pagination.itemsPerPage
     );
 
-    // Increase current page if possible
     if (this.state.pagination.currentPage < totalPages) {
       this.state.pagination.currentPage += 1;
       this.render();
@@ -142,7 +138,6 @@ class ProductTableApp {
 		const inputVal = parseInt(this.$pageInput.val(), 10);
 
 		if (isNaN(inputVal)) {
-			// If the input isn't a valid number, do nothing or show a warning
 			return;
 		}
 
@@ -151,19 +146,15 @@ class ProductTableApp {
 		const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
 		if (inputVal < 1) {
-			// If user types something less than 1, go to page 1
 			this.state.pagination.currentPage = 1;
 		} else if (inputVal > totalPages) {
-			// If user types a number larger than total pages, go to last page
 			this.state.pagination.currentPage = totalPages;
 		} else {
-			// Otherwise, go to that page
 			this.state.pagination.currentPage = inputVal;
 		}
 
 		this.$pageInput.val('');
 
-		// Re-render with the new page
 		this.render();
 	}
 
@@ -176,7 +167,6 @@ class ProductTableApp {
     const brands = [...new Set(products.map((p) => p.brand))];
     const categories = [...new Set(products.map((p) => p.category))];
 
-    // Clear any previous options (if rerendering), then add default "all"
     this.$filterBrand.empty().append('<option value="all">All</option>');
     brands.forEach((brand) => {
       this.$filterBrand.append(`<option value="${brand}">${brand}</option>`);
@@ -215,7 +205,6 @@ class ProductTableApp {
       case 'price':
         return [...products].sort((a, b) => a.price - b.price);
 
-      // Handle date sorts
       case 'created_at':
       case 'updated_at':
         return [...products].sort((a, b) => {
@@ -235,8 +224,6 @@ class ProductTableApp {
   }
 
   parseDate(dateString) {
-    // Adjust to your actual date format if needed
-    // For example, if it's "YYYY/MM/DD", replace or split as needed.
     return new Date(dateString.replace(/\//g, '-'));
   }
 
@@ -275,39 +262,29 @@ class ProductTableApp {
    * -----------------------------
    */
   render(productsArg) {
-    // We can accept an optional productsArg,
-    // but usually we calculate it from filters/sorts.
     const productsToRender =
       productsArg || this.getFilteredSortedProducts() || [];
 
-    // Show loading if not loaded yet
     if (!this.state.isLoaded) {
       this.renderLoading();
       return;
     }
 
-    // Paginate the filtered/sorted list
     const paginated = this.getPaginatedProducts(productsToRender);
 
-    // If no products for this page, check if we should reset to page 1
     if (paginated.length === 0 && productsToRender.length > 0) {
-      // If total items exist, but the slice is empty, it likely means
-      // we navigated too far. Reset to page 1 and re-render.
       this.state.pagination.currentPage = 1;
       return this.render();
     }
 
-    // Render table body
     this.renderTableBody(paginated);
 
-    // Show or hide "No Results"
     if (productsToRender.length === 0) {
       this.$noResults.removeClass('hidden');
     } else {
       this.$noResults.addClass('hidden');
     }
 
-    // Update pagination UI
     this.updatePaginationControls(productsToRender.length);
   }
 
@@ -331,18 +308,15 @@ class ProductTableApp {
     const { currentPage, itemsPerPage } = this.state.pagination;
     const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-    // Update display
     this.$currentPage.text(currentPage);
     this.$totalPages.text(totalPages);
 
-    // Disable prev button if we’re on page 1
     if (currentPage === 1) {
       this.$prevPageBtn.prop('disabled', true);
     } else {
       this.$prevPageBtn.prop('disabled', false);
     }
 
-    // Disable next button if we’re on the last page
     if (currentPage >= totalPages) {
       this.$nextPageBtn.prop('disabled', true);
     } else {
@@ -360,10 +334,10 @@ class ProductTableApp {
   }
 
   /**
-   * Shows a temporary loading indicator
+   * Shows a error message if the data is not loaded or an error occurs during the fetch
    */
   renderLoading() {
-    this.$tbody.html('<tr><td colspan="8">Loading...</td></tr>');
+    this.$tbody.html('<tr><td colspan="8">You have to disable debug mode to use the products table</td></tr>');
   }
 
   /**

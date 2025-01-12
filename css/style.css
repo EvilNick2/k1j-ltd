@@ -26,9 +26,11 @@ body {
 nav {
 	background-color: var(--dark-mode-foreground);
   display: flex;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
-  position: relative;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
   width: 100vw;
   min-height: 10vh;
   z-index: 10;
@@ -81,7 +83,7 @@ nav {
 }
 
 .link-1-color:hover {
-	color: var(--light-mode-foreground);
+	color: var(--accentcolor-2-dark);
 }
 
 .link-2-color {
@@ -138,6 +140,51 @@ nav {
 
 .user-img-box:hover {
 	background-color: var(--accentcolor-1-dark);
+}
+
+.parallax {
+	background-image: url('../imgs/background.jpg');
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+.parallaxInner {
+	padding: 10% 0;
+}
+
+.parallaxTextContainer {
+    position: relative; /* Needed to position the cutout text in the middle of the image */
+    height: 300px; /* Some height */
+}
+
+.parallaxText {
+    background-color: var(--light-mode-color);
+    color: black;
+    font-size: 10vw; /* Responsive font size */
+    font-weight: bold;
+    margin: 0 auto; /* Center the text container */
+    padding: 10px;
+    width: 50%;
+    text-align: center; /* Center text */
+    position: absolute; /* Position text */
+    top: 50%; /* Position text in the middle */
+    left: 50%; /* Position text in the middle */
+    transform: translate(-50%, -50%); /* Position text in the middle */
+    mix-blend-mode: screen; /* This makes the cutout text possible */
+		user-select: none;
+}
+
+.parallaxTextBoxHome{
+    border-style: solid;
+    border-color: var(--dark-mode-foreground);
+    border-width: 20%;
+    margin-top: 5%;
+    margin-right: 5%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    padding: 2% 3%;
+		font-size: 28px;
 }
 
 /* Light mode settings */

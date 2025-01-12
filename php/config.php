@@ -27,13 +27,12 @@ $sql = "CREATE DATABASE IF NOT EXISTS " . $DATABASE_NAME;
 if ((mysqli_query($conn, $sql))) {
   if (mysqli_warning_count($conn) == 0) {
 		console_log("Database created successfully");
-
   }
 } else {
 	console_log("Error creating database: " . mysqli_error($mysql));
 }
 
-$conn ->close();
+$conn->close();
 
 $conn = new mysqli($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 

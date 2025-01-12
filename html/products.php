@@ -66,7 +66,6 @@ $conn->close();
 	<?php include 'nav.php'; ?>
 	
 	<div class="container">
-		<h1 class="heading-lv1">Products</h1>
 
 		<div class="table-app" id="product-table-app">
 			<div class="table-handler">
