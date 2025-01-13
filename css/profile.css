@@ -7,20 +7,20 @@
 
 .login h1,
 .register h1 {
-	background-color: var(--dark-mode-foreground);
+	background-color: var(--background-color-secondary);
 	box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
 	text-align: center;
-	color: var(--light-mode-color);
+	color: var(--foreground-color);
 	font-size: 24px;
 	padding: 20px 0 20px 0;
-	border-bottom: 1px solid var(--dark-mode-color);
+	border-bottom: 1px solid var(--background-color);
 	border-radius: 5px 5px 0 0;
 }
 
 .login form,
 .register form {
-	background-color: var(--dark-mode-foreground);
-	box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+	background-color: var(--background-color-secondary);
+	box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.3);
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -35,8 +35,8 @@
 	align-items: center;
 	width: 50px;
 	height: 50px;
-	background-color: var(--accentcolor-1);
-	color: var(--dark-mode-foreground);
+	background-color: var(--primary-color);
+	color: var(--background-color-secondary);
 	border-radius: 5px 0 0 5px;
 }
 
@@ -47,10 +47,10 @@
 .login form input.email,
 .register form input.email {
 	width: 310px;
-	background-color: var(--dark-mode-foreground);
-	color: var(--light-mode-color);
+	background-color: var(--background-color-secondary);
+	color: var(--foreground-color);
 	height: 50px;
-	border: 1px solid var(--dark-mode-color);
+	border: 1px solid var(--background-color);
 	margin-bottom: 20px;
 	padding: 0 15px;
 	border-radius: 0 5px 5px 0;
@@ -61,12 +61,12 @@
 	width: 100%;
 	padding: 15px;
 	margin-top: 20px;
-	background-color: var(--accentcolor-1);
+	background-color: var(--primary-color);
 	border: 0;
 	cursor: pointer;
 	font-weight: bold;
-	color: var(--light-mode-color);
-	transition: var(--dark-mode-color) 0.2;
+	color: var(--foreground-color);
+	transition: var(--background-color) 0.2;
 }
 
 .login form input[type="submit"],
@@ -77,15 +77,15 @@
 
 .login form input[type="submit"]:hover,
 .register form input[type="submit"]:hover {
-	background-color: var(--accentcolor-1-dark);
-	transition: var(--accentcolor-1) 0.2s;
+	background-color: var(--primary-color-dark);
+	transition: var(--primary-color) 0.2s;
 }
 
 .dialog-success {
 	background-color: var(--success-color);
 	width: 400px;
 	height: auto;
-	color: var(--light-mode-color);
+	color: var(--foreground-color);
 	font-size: 1.7em;
 	font-weight: bold;
 	text-align: center;
@@ -94,14 +94,14 @@
 	margin: auto;
 	z-index: -1;
 	border-radius: 0 0 20px 20px;
-	box-shadow: 2px 2px 4px var(--dark-mode-foreground);
+	box-shadow: 2px 2px 4px var(--background-color-secondary);
 }
 
 .dialog-warning {
 	background-color: var(--warning-color);
 	width: 400px;
 	height: auto;
-	color: var(--light-mode-color);
+	color: var(--foreground-color);
 	font-size: 1.7em;
 	font-weight: bold;
 	text-align: center;
@@ -110,7 +110,7 @@
 	margin: auto;
 	z-index: -1;
 	border-radius: 0 0 20px 20px;
-	box-shadow: 2px 2px 4px var(--dark-mode-foreground);
+	box-shadow: 2px 2px 4px var(--background-color-secondary);
 }
 
 .content {
@@ -127,7 +127,7 @@
 }
 
 .card {
-    background-color: var(--dark-mode-foreground);
+    background-color: var(--background-color-secondary);
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
@@ -145,13 +145,13 @@
 }
 
 .card table td {
-    border-bottom: 1px solid var(--dark-mode-color);
+    border-bottom: 1px solid var(--background-color);
     padding: 10px;
-    color: var(--light-mode-color);
+    color: var(--foreground-color);
 }
 
 .card form h3 {
-    color: var(--light-mode-color);
+    color: var(--foreground-color);
     font-size: 1.5em;
     margin-bottom: 15px;
     font-weight: 600;
@@ -160,7 +160,7 @@
 .card form label {
     display: block;
     font-size: 1em;
-    color: var(--light-mode-foreground);
+    color: var(--foreground-color-secondary);
     margin-bottom: 5px;
 }
 
@@ -168,23 +168,23 @@
     width: 100%;
     padding: 8px;
     margin-bottom: 15px;
-    background-color: var(--dark-mode-color);
-    color: var(--light-mode-color);
-    border: 1px solid var(--dark-mode-foreground);
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+    border: 1px solid var(--background-color-secondary);
     border-radius: 4px;
     font-size: 1em;
     outline: none;
 }
 
 .card form select:focus {
-    border-color: var(--accentcolor-1);
+    border-color: var(--primary-color);
 }
 
 .card button[type="submit"] {
     display: inline-block;
     width: 100%;
-    background-color: var(--accentcolor-1);
-    color: var(--light-mode-color);
+    background-color: var(--primary-color);
+    color: var(--foreground-color);
     padding: 10px 20px;
     font-size: 1em;
     font-weight: 600;
@@ -195,79 +195,5 @@
 }
 
 .card button[type="submit"]:hover {
-    background-color: var(--accentcolor-1-dark);
-}
-
-/* Light mode settings */
-body.light-mode .login,
-body.light-mode .register {
-	background-color: var(--light-mode-foreground);
-}
-
-body.light-mode .login h1,
-body.light-mode .register h1 {
-	background-color: var(--light-mode-foreground);
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	color: var(--dark-mode-color);
-	border-bottom: 1px solid var(--light-mode-color);
-}
-
-body.light-mode .login form,
-body.light-mode .register form {
-	background-color: var(--light-mode-foreground);
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-body.light-mode .login form label,
-body.light-mode .register form label {
-	color: var(--light-mode-foreground);
-}
-
-body.light-mode .login form input[type="password"],
-body.light-mode .register form input[type="password"],
-body.light-mode .login form input[type="text"],
-body.light-mode .register form input[type="text"],
-body.light-mode .login form input.email,
-body.light-mode .register form input.email {
-	background-color: var(--light-mode-foreground);
-	color: var(--dark-mode-color);
-	border: 1px solid var(--light-mode-color);
-}
-
-body.light-mode .login form input[type="submit"],
-body.light-mode .register form input[type="submit"] {
-	color: var(--dark-mode-color);
-	transition: var(--light-mode-color) 0.2s;
-}
-
-body.light-mode .block {
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-body.light-mode .card {
-	background-color: var(--light-mode-foreground);
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-body.light-mode .card table td {
-	border-bottom: 1px solid var(--light-mode-color);
-	color: var(--dark-mode-color);
-}
-
-body.light-mode .card form h3 {
-	color: var(--dark-mode-color);
-}
-
-body.light-mode .card form label {
-	color: var(--dark-mode-foreground);
-}
-
-body.light-mode .card form select {
-	background-color: var(--light-mode-color);
-	color: var(--dark-mode-color);
-	border: 1px solid var(--light-mode-foreground);
-}
-
-body.light-mode .card form button[type="submit"] {
-	color: var(--dark-mode-color);
+    background-color: var(--primary-color-dark);
 }

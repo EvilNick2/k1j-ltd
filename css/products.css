@@ -1,8 +1,4 @@
 :root {
-  --primary-color: var(--accentcolor-1);
-  --primary-color-dark: var(--accentcolor-1-dark);
-  --background-color: var(--dark-mode-color);
-  --foreground-color: var(--light-mode-color);
   --table-head-color: var(--primary-color);
   --table-row-even: var(--dark-mode-foreground);
   --table-row-odd: var(--dark-mode-color);

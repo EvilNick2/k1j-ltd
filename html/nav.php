@@ -7,12 +7,14 @@ if (isset($currentPage) && $currentPage !== 'index') {
 
 <nav>
 	<div class="logo">
-		<img src="<?php echo $prefix; ?>imgs/logo.svg" alt="K1J LTD Logo">
+		<span class="logo-img"></span>
 	</div>
 
 	<div class="links left">
 		<a class="link-1-color" href="<?php echo $prefix; ?>index.php">Home</a>
-		<a class="link-1-color" href="<?php echo $prefix; ?>html/dashboard.php">Analytics</a>
+		<?php if (isset($_SESSION['loggedin'])): ?>
+			<a class="link-1-color" href="<?php echo $prefix; ?>html/dashboard.php">Analytics</a>
+		<?php endif; ?>
 		<?php if (isset($_SESSION['rank']) && $rankHierarchy[$_SESSION['rank']] >= $rankHierarchy['Employee']): ?>
 			<a class="link-1-color" href="<?php echo $prefix; ?>html/products.php">Products</a>
 		<?php endif; ?>

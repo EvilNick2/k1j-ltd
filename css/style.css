@@ -9,6 +9,14 @@
   --accentcolor-2-dark: #e27396;
 	--success-color: #4caf50;
 	--warning-color: #8a0000;
+	--primary-color: var(--accentcolor-1);
+  --primary-color-dark: var(--accentcolor-1-dark);
+	--secondary-color: var(--accentcolor-2);
+	--secondary-color-dark: var(--accentcolor-2-dark);
+  --background-color: var(--dark-mode-color);
+	--background-color-secondary: var(--dark-mode-foreground);
+  --foreground-color: var(--light-mode-color);
+  --foreground-color-secondary: var(--light-mode-foreground);
 }
 
 * {
@@ -19,12 +27,12 @@
 
 body {
 	font-family: Arial, Helvetica, sans-serif;
-	background-color: var(--dark-mode-color);
-	color: var(--light-mode-color);
+	background-color: var(--background-color);
+	color: var(--foreground-color);
 }
 
 nav {
-	background-color: var(--dark-mode-foreground);
+	background-color: var(--background-color-secondary);
   display: flex;
   padding-top: 1vh;
   padding-bottom: 1vh;
@@ -50,8 +58,13 @@ nav {
 	padding: 0 0 0 2vw;
 }
 
-.logo img {
+.logo .logo-img {
 	width: 5vw;
+	height: 5vw;
+	background-image: url(../imgs/logo.svg);
+	background-size: contain;
+	background-repeat: no-repeat;
+	display: block;
 }
 
 .left {
@@ -79,19 +92,19 @@ nav {
 }
 
 .link-1-color {
-	color: var(--light-mode-color);
+	color: var(--foreground-color);
 }
 
 .link-1-color:hover {
-	color: var(--accentcolor-2-dark);
+	color: var(--secondary-color-dark);
 }
 
 .link-2-color {
-	color: var(--accentcolor-1)
+	color: var(--primary-color);
 }
 
 .link-2-color:hover {
-	color: var(--accentcolor-1-dark);
+	color: var(--primary-color-dark);
 }
 
 .button-1 {
@@ -99,31 +112,31 @@ nav {
 	border: 2px solid transparent;
 	border-radius: 10px;
 	padding: 11px 19px !important;
-	color: var(--accentcolor-1);
+	color: var(--primary-color);
 }
 
 .button-1:hover {
-	border: 2px solid var(--accentcolor-1-dark);
-	color: var(--accentcolor-1-dark);
+	border: 2px solid var(--primary-color-dark);
+	color: var(--primary-color-dark);
 }
 
 .button-2 {
-	border: 1px solid var(--accentcolor-1);
+	border: 1px solid var(--primary-color);
 	border-radius: 10px;
 	padding: 11px 19px !important;
-	background-color: var(--accentcolor-1);
-	color: var(--light-mode-color);
+	background-color: var(--primary-color);
+	color: var(--foreground-color);
 }
 
 .button-2:hover {
-	border: 1px solid var(--accentcolor-1-dark);
-	background-color: var(--accentcolor-1-dark);
-	color: var(--light-mode-color);
+	border: 1px solid var(--primary-color-dark);
+	background-color: var(--primary-color-dark);
+	color: var(--foreground-color);
 }
 
 .user-name {
 	padding: 0 1.1vw;
-	color: var(--light-mode-color);
+	color: var(--foreground-color);
 	font-size: 1.15em;
 	font-weight: 600;
 	cursor: default;
@@ -133,13 +146,13 @@ nav {
 	border-radius: 50%;
 	width: 48px;
 	height: 48px;
-	background-color: var(--accentcolor-1);
+	background-color: var(--primary-color);
 	transition: 0.2s;
 	cursor: pointer;
 }
 
 .user-img-box:hover {
-	background-color: var(--accentcolor-1-dark);
+	background-color: var(--primary-color-dark);
 }
 
 .parallax {
@@ -177,7 +190,7 @@ nav {
 
 .parallaxTextBoxHome{
     border-style: solid;
-    border-color: var(--dark-mode-foreground);
+    border-color: var(--background-color-secondary);
     border-width: 20%;
     margin-top: 5%;
     margin-right: 5%;
@@ -189,6 +202,12 @@ nav {
 
 /* Light mode settings */
 body.light-mode {
-	background-color: var(--light-mode-color);
-	color: var(--dark-mode-color);
+	--background-color: var(--light-mode-color);
+	--background-color-secondary: var(--light-mode-foreground);
+  --foreground-color: var(--dark-mode-color);
+  --foreground-color-secondary: var(--dark-mode-foreground);
+}
+
+body.light-mode .logo .logo-img {
+	background-image: url('../imgs/logo-light.svg');
 }
