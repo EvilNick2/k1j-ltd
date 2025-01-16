@@ -3,6 +3,7 @@ include "../php/config.php";
 session_start();
 
 $message = "";
+$messageType = "";
 
 $currentPage = 'login';
 
@@ -16,14 +17,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
 	if (!$stmt->num_rows > 0) {
 		$message = "User does not exist";
+		$messageType = "failure";
 	} else {
 		$stmt->bind_result($id, $password, $name, $rank, $email, $address);
 		$stmt->fetch();
 
 		if (!password_verify($_POST["password"], $password)) {
 			$message = "Password is incorrect";
+			$messageType = "failure";
 		} else {
 			$message = "Logged in successfully";
+			$messageType = "success";
 			session_regenerate_id();
 			$_SESSION["loggedin"] = TRUE;
 			$_SESSION["username"] = $username;
@@ -76,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				</div>
         <input type="submit" value="Login">
         </form>
-				<?php if ($message === "User does not exist" || $message === "Password is incorrect"): ?>
+				<?php if ($messageType === "failure"): ?>
 					<style>
 						.login form input[type="submit"] {
 							border-radius: 0;

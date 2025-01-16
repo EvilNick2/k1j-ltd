@@ -1,6 +1,7 @@
 <?php
 include '../php/config.php';
 $message = "";
+$messageType = "";
 
 $currentPage = 'register';
 
@@ -18,16 +19,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	if ($existingEmail->num_rows>0) {
 		$message = "Email already exists";
+		$messageType = "failure";
 	} else {
 		$stmt = $conn->prepare("INSERT INTO users (username, name, email, address, password) VALUES (?,?,?,?,?)");
 		$stmt->bind_param("sssss", $username, $name, $email, $address, $password);
 
 		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 			$message = "Email doesn't have the right format";
+			$messageType = "failure";
 		} elseif ($stmt->execute()) {
 			$message = "Account created successfully";
+			$messageType = "success";
 		} else {
 			$message = "Error: " . $stmt->error;
+			$messageType = "failure";
 		}
 		$stmt->close();
 	}
@@ -78,9 +83,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			</div>
 			<input type="submit" value="Register">
 		</form>
-		<?php if ($message === "Account created successfully"): ?>
+		<?php if ($messageType === "success"): ?>
 			<?php header("Location: login.php"); ?>
-		<?php elseif ($message === "Email already exists" || $message === "Email doesn't have the right format"): ?>
+		<?php elseif ($messageType === "failure"): ?>
 			<style>
 				.register form input[type="submit"] {
 					border-radius: 0;

@@ -9,25 +9,60 @@ if (!isset($_SESSION['loggedin']) || !isset($_SESSION['password_confirmed']) || 
 $currentPage = 'update_profile';
 
 include '../php/config.php';
+$message = "";
+$messageType = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$username = $_POST['username'];
 	$name = $_POST['name'];
 	$email = $_POST['email'];
 	$address = $_POST['address'];
-	$password = $_POST['password'];
+	$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-	$stmt = $conn->prepare('UPDATE users SET username = ?, name = ?, email = ?, address = ?, password = ? WHERE id = ?');
-	$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-	$stmt->bind_param('sssssi', $username, $name, $email, $address, $hashedPassword, $_SESSION['id']);
-	$stmt->execute();
-	$stmt->close();
+	$currentUserID = $_SESSION['id'];
 
-	unset($_SESSION['password_confirmed']);
+	$usernameQuery = "SELECT id FROM users WHERE username = ? AND id != ?";
+	$usernameStmt = $conn->prepare($usernameQuery);
+	$usernameStmt->bind_param("si", $username, $currentUserID);
+	$usernameStmt->execute();
+	$usernameStmt->store_result();
 
-	session_destroy();
-	header('Location: ../html/login.php');
-	exit;
+	if ($usernameStmt->num_rows > 0) {
+		$message = "Username already exists";
+		$messageType = "failure";
+	} else {
+		$emailQuery = "SELECT id FROM users WHERE email = ? AND id != ?";
+		$emailStmt = $conn->prepare($emailQuery);
+		$emailStmt->bind_param("si", $email, $currentUserID);
+		$emailStmt->execute();
+		$emailStmt->store_result();
+
+		if ($emailStmt->num_rows > 0) {
+			$message = "Email already exists";
+			$messageType = "failure";
+		} else {
+			$stmt = $conn->prepare('UPDATE users SET username = ?, name = ?, email = ?, address = ?, password = ? WHERE id = ?');
+			$stmt->bind_param('sssssi', $username, $name, $email, $address, $password, $currentUserID);
+			if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+				$message = "Email doesn't have the right format";
+				$messageType = "failure";
+			} elseif ($stmt->execute()) {
+				$message = "Account successfully updated";
+				$messageType = "success";
+
+				unset($_SESSION['password_confirmed']);
+				session_destroy();
+				header('Location: ../html/login.php');
+			exit;
+			} else {
+				$message = "Error: " . $stmt->error;
+				$messageType = "failure";
+			}
+			$stmt->close();
+		}
+		$emailStmt->close();
+	}
+	$usernameStmt->close();
 }
 
 $conn->close();
@@ -71,11 +106,21 @@ $conn->close();
 					<i class="fas fa-lock"></i>
 				</label>
 				<div class="password-container">
-					<input type="password" name="password" id="password">
+					<input type="password" name="password" id="password" required>
 					<i class="fa fa-eye-slash" id="togglePassword"></i>
 				</div>
 				<input type="submit" value="Submit Change">
 			</form>
+			<?php if ($messageType === "success"): ?>
+				<?php header("Location: login.php"); ?>
+			<?php elseif ($messageType === "failure"): ?>
+				<style>
+				.register form input[type="submit"] {
+					border-radius: 0;
+				}
+				</style>
+				<div class="dialog-warning"><?php echo $message ?></div>
+			<?php endif; ?>
 		</div>
 	</div>
 	<script src="../js/main.js"></script>
