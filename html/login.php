@@ -64,31 +64,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 	<?php include 'nav.php'; ?>
 
-    <div class="login">
-      <h1>Login</h1>
-      <form method="post" autocomplete="off">
-        <label for="username">
-          <i class="fas fa-user"></i>
-        </label>
-        <input type="text" name="username" placeholder="Username" id="username" required>
-        <label for="password">
-            <i class="fas fa-lock"></i>
-        </label>
-				<div class="password-container">
-					<input type="password" name="password" placeholder="Password" id="password" required>
-					<i class="fa fa-eye-slash" id="togglePassword"></i>
-				</div>
-        <input type="submit" value="Login">
-        </form>
-				<?php if ($messageType === "failure"): ?>
-					<style>
-						.login form input[type="submit"] {
-							border-radius: 0;
-						}
-					</style>
-					<div class="dialog-warning"><?php echo $message ?></div>
-				<?php endif; ?>
-    </div>
+	<div class="login">
+		<h1>Login</h1>
+		<form method="post" autocomplete="off">
+			<label for="username">
+				<i class="fas fa-user"></i>
+			</label>
+			<input type="text" name="username" placeholder="Username" id="username" required>
+			<label for="password">
+					<i class="fas fa-lock"></i>
+			</label>
+			<div class="password-container">
+				<input type="password" name="password" placeholder="Password" id="password" required>
+				<i class="fa fa-eye-slash" id="togglePassword"></i>
+			</div>
+			<input type="submit" value="Login">
+			</form>
+			<?php if ($messageType === "failure"): ?>
+				<style>
+					.login form input[type="submit"] {
+						border-radius: 0;
+					}
+				</style>
+				<div class="dialog-warning"><?php echo $message ?></div>
+			<?php endif; ?>
+	</div>
+	
+	<script src="../js/toggle_password.js"></script>
 	<script src="../js/main.js"></script>
 </body>
 </html>

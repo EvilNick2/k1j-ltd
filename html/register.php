@@ -94,6 +94,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<div class="dialog-warning"><?php echo $message ?></div>
 		<?php endif; ?>
 	</div>
+	
+	<script src="../js/toggle_password.js"></script>
 	<script src="../js/main.js"></script>
 </body>
 </html>

@@ -220,6 +220,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['generate_users'])) {
 	</div>
 
 	<script src="../js/confirm_password.js"></script>
+	<script src="../js/toggle_password.js"></script>
 	<script src="../js/main.js"></script>
 </body>
 </html>

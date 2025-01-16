@@ -123,6 +123,8 @@ $conn->close();
 			<?php endif; ?>
 		</div>
 	</div>
+
+	<script src="../js/toggle_password.js"></script>
 	<script src="../js/main.js"></script>
 </body>
 </html>
