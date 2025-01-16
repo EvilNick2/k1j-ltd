@@ -6,10 +6,10 @@ $DATABASE_NAME = "k1j_ltd";
 $DEBUG_MODE = false;
 
 function console_log($message) {
-    global $DEBUG_MODE;
-    if ($DEBUG_MODE) {
-        echo "<script>console.log(" . json_encode($message) . ");</script>";
-    }
+	global $DEBUG_MODE;
+	if ($DEBUG_MODE) {
+		echo "<script>console.log(" . json_encode($message) . ");</script>";
+	}
 }
 
 function sendSQLQuery($conn, $sqlQuery, $successMessage, $errorMessage) {
@@ -73,24 +73,24 @@ $rankHierarchy = [
 ];
 
 $sql = "CREATE TABLE IF NOT EXISTS products (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    brand VARCHAR(255),
-    name VARCHAR(255) NOT NULL,
-    category VARCHAR(255),
-    price DECIMAL(10, 2),
-    description TEXT,
-    stock INT UNSIGNED,
-    stocked BOOLEAN,
-    created_at DATETIME,
-    updated_at DATETIME
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	brand VARCHAR(255),
+	name VARCHAR(255) NOT NULL,
+	category VARCHAR(255),
+	price DECIMAL(10, 2),
+	description TEXT,
+	stock INT UNSIGNED,
+	stocked BOOLEAN,
+	created_at DATETIME,
+	updated_at DATETIME
 )";
 sendSQLQuery($conn, $sql, "Products table created successfully", "Error creating products table");
 
 $sql = "CREATE TABLE IF NOT EXISTS user_analytics (
-    username VARCHAR(30) NOT NULL PRIMARY KEY,
-    last_login DATETIME DEFAULT CURRENT_TIMESTAMP,
-    login_count INT UNSIGNED DEFAULT 0,
-    FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE
+	username VARCHAR(30) NOT NULL PRIMARY KEY,
+	last_login DATETIME DEFAULT CURRENT_TIMESTAMP,
+	login_count INT UNSIGNED DEFAULT 0,
+	FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE
 )";
 sendSQLQuery($conn, $sql, "User analytics table created successfully", "Error creating user analytics table");
 ?>

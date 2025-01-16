@@ -96,7 +96,7 @@ nav {
 }
 
 .link-1-color:hover {
-	color: var(--secondary-color-dark);
+	color: var(--primary-color);
 }
 
 .link-2-color {

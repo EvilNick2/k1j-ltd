@@ -22,13 +22,20 @@ if (isset($_SESSION['loggedin'])) {
 
 	if (in_array($_SESSION['rank'], ['Employee', 'Supervisor', 'Manager', 'Director'])) {
 		$sql = "SELECT COUNT(*) as user_count FROM users";
-		$result = $conn->query($sql);
-		if ($result->num_rows > 0) {
-			$row = $result->fetch_assoc();
-			$userCount = $row['user_count'];
+		$userResult = $conn->query($sql);
+		if ($userResult->num_rows > 0) {
+			$userRow = $userResult->fetch_assoc();
+			$userCount = $userRow['user_count'];
+		}
+		$sql = "SELECT COUNT(*) as product_count FROM products";
+		$productResult = $conn->query($sql);
+		if ($productResult->num_rows) {
+			$productRow = $productResult->fetch_assoc();
+			$productCount = $productRow['product_count'];
 		}
 	}
 	$stmt->close();
+	$conn->close();
 }
 ?>
 
@@ -50,6 +57,7 @@ if (isset($_SESSION['loggedin'])) {
 		<h2>Analytics</h2>
 
 		<div class="card">
+			<h3>Account Details:</h3>
 			<?php if ($analyticsData): ?>
 				<p><strong>Username:</strong> <?= htmlspecialchars($analyticsData['username'], ENT_QUOTES) ?> </p>
 				<p><strong>User Rank:</strong> <?= htmlspecialchars($_SESSION['rank'], ENT_QUOTES) ?> </p>
@@ -57,8 +65,17 @@ if (isset($_SESSION['loggedin'])) {
 				<p><strong>Login Count:</strong> <?= htmlspecialchars($analyticsData['login_count'], ENT_QUOTES) ?> </p>
 			<?php endif; ?>
 
+		</div>
+		<div class="card">
+			<h3>Users Information:</h3>
 			<?php if ($userCount > 0): ?>
 				<p><strong>Total Registered Users:</strong> <?= htmlspecialchars($userCount, ENT_QUOTES) ?></p>
+			<?php endif; ?>
+		</div>
+		<div class="card">
+			<h3>Product Information:</h3>
+			<?php if ($productCount > 0): ?>
+				<p><strong>Total Product Amount:</strong> <?= htmlspecialchars($productCount, ENT_QUOTES) ?></p>
 			<?php endif; ?>
 		</div>
 	</div>

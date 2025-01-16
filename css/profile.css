@@ -126,6 +126,12 @@
     font-weight: 600;
 }
 
+.content h3 {
+	font-size: 1.5em;
+	margin-bottom: 20px;
+	font-weight: 600;
+}
+
 .card {
     background-color: var(--background-color-secondary);
     border-radius: 8px;
