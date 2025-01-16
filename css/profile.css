@@ -56,6 +56,27 @@
 	border-radius: 0 5px 5px 0;
 }
 
+.password-container {
+	position: relative;
+	width: fit-content;
+}
+
+.password-container .fa-eye {
+	position: absolute;
+	right: 15px;
+	top: 35%;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
+
+.password-container .fa-eye-slash {
+	position: absolute;
+	right: 14px;
+	top: 35%;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
+
 .login form input[type="submit"],
 .register form input[type="submit"] {
 	width: 100%;

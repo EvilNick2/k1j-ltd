@@ -140,7 +140,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['generate_users'])) {
 				<label for="confirm-password">
 					<i class="fas fa-lock"></i>
 				</label>
-				<input type="password" name="confirm-password" id="confirm-password" required>
+				<div class="password-container">
+					<input type="password" name="confirm-password" placeholder="Password" id="password" required>
+					<i class="fa fa-eye-slash" id="togglePassword"></i>
+				</div>
 				<input type="submit" value="Confirm Password">
 			</form>
 			<?php if (isset($_SESSION['message']) && ($_SESSION['message'] === "Password confirmation failed" || $_SESSION['message'] === "Invalid request method")): ?>

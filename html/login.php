@@ -70,7 +70,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="password">
             <i class="fas fa-lock"></i>
         </label>
-        <input type="password" name="password" placeholder="Password" id="password" required>
+				<div class="password-container">
+					<input type="password" name="password" placeholder="Password" id="password" required>
+					<i class="fa fa-eye-slash" id="togglePassword"></i>
+				</div>
         <input type="submit" value="Login">
         </form>
 				<?php if ($message === "User does not exist" || $message === "Password is incorrect"): ?>

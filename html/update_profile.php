@@ -70,10 +70,14 @@ $conn->close();
 				<label for="password">
 					<i class="fas fa-lock"></i>
 				</label>
-				<input type="password" name="password" id="password">
+				<div class="password-container">
+					<input type="password" name="password" id="password">
+					<i class="fa fa-eye-slash" id="togglePassword"></i>
+				</div>
 				<input type="submit" value="Submit Change">
 			</form>
 		</div>
 	</div>
+	<script src="../js/main.js"></script>
 </body>
 </html>
