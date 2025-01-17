@@ -38,7 +38,7 @@ Before starting, you need to have [Git](https://git-scm.com) and [XAMPP](https:/
 ## :checkered_flag: Starting ##
 
 ```bash
-# Clone this project into your XAMPP htdocs folder
+# Clone or move this project into your XAMPP htdocs folder
 $ git clone https://github.com/EvilNick2/k1j-ltd
 
 # Open XAMPP and start the Apache and MySQL services
@@ -49,7 +49,7 @@ $DATABASE_USER = "root";
 $DATABASE_PASS = "";
 $DATABASE_NAME = "k1j_ltd"; # Rename the database to whatever you want
 
-# Go to <http://localhost/k1j-ltd>
+# Go to <http://localhost/k1j-ltd> or whatever URL your web server is located on
 
 # The default admin user credentials are
 $ Username: Director
