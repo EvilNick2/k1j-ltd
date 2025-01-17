@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['generate_users'])) {
 			mkdir(__DIR__ . '/../logs', 0777, true);
 		}
 
-		$timestamp = date('Ymd-His');
+		$timestamp = date('Y-m-d_H-i-s');
 		file_put_contents(__DIR__ . "/../logs/random_users_{$timestamp}_$j.json", $response);
 
 		if ($userData && isset($userData['results'])) {
