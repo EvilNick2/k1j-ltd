@@ -1,5 +1,5 @@
 <?php
-$DATABASE_HOST = "db";
+$DATABASE_HOST = "db:3306";
 $DATABASE_USER = "root";
 $DATABASE_PASS = "admin";
 $DATABASE_NAME = "k1j_ltd";
