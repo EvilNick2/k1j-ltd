@@ -56,28 +56,27 @@ if (isset($_SESSION['loggedin'])) {
 	<div class="content">
 		<h2>Analytics</h2>
 
-		<div class="card">
-			<h3>Account Details:</h3>
-			<?php if ($analyticsData): ?>
-				<p><strong>Username:</strong> <?= htmlspecialchars($analyticsData['username'], ENT_QUOTES) ?> </p>
-				<p><strong>User Rank:</strong> <?= htmlspecialchars($_SESSION['rank'], ENT_QUOTES) ?> </p>
-				<p><strong>Last Login:</strong> <?= htmlspecialchars($analyticsData['last_login'], ENT_QUOTES) ?> </p>
-				<p><strong>Login Count:</strong> <?= htmlspecialchars($analyticsData['login_count'], ENT_QUOTES) ?> </p>
-			<?php endif; ?>
-
-		</div>
-		<div class="card">
-			<h3>Users Information:</h3>
-			<?php if ($userCount > 0): ?>
-				<p><strong>Total Registered Users:</strong> <?= htmlspecialchars($userCount, ENT_QUOTES) ?></p>
-			<?php endif; ?>
-		</div>
-		<div class="card">
-			<h3>Product Information:</h3>
-			<?php if ($productCount > 0): ?>
-				<p><strong>Total Product Amount:</strong> <?= htmlspecialchars($productCount, ENT_QUOTES) ?></p>
-			<?php endif; ?>
-		</div>
+		<?php if ($analyticsData): ?>
+			<div class="card">
+				<h3>Account Details:</h3>
+					<p><strong>Username:</strong> <?= htmlspecialchars($analyticsData['username'], ENT_QUOTES) ?> </p>
+					<p><strong>User Rank:</strong> <?= htmlspecialchars($_SESSION['rank'], ENT_QUOTES) ?> </p>
+					<p><strong>Last Login:</strong> <?= htmlspecialchars($analyticsData['last_login'], ENT_QUOTES) ?> </p>
+					<p><strong>Login Count:</strong> <?= htmlspecialchars($analyticsData['login_count'], ENT_QUOTES) ?> </p>
+			</div>
+		<?php endif; ?>
+		<?php if ($userCount > 0): ?>
+			<div class="card">
+				<h3>Users Information:</h3>
+					<p><strong>Total Registered Users:</strong> <?= htmlspecialchars($userCount, ENT_QUOTES) ?></p>
+			</div>
+		<?php endif; ?>
+		<?php if ($productCount > 0): ?>
+			<div class="card">
+				<h3>Product Information:</h3>
+					<p><strong>Total Product Amount:</strong> <?= htmlspecialchars($productCount, ENT_QUOTES) ?></p>
+			</div>
+		<?php endif; ?>
 	</div>
 
 	<script src="../js/main.js"></script>
