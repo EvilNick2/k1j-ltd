@@ -1,7 +1,7 @@
 <?php
-$DATABASE_HOST = "localhost";
+$DATABASE_HOST = "db";
 $DATABASE_USER = "root";
-$DATABASE_PASS = "";
+$DATABASE_PASS = "admin";
 $DATABASE_NAME = "k1j_ltd";
 $DEBUG_MODE = false;
 
