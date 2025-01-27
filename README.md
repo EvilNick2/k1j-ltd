@@ -57,6 +57,11 @@ $ Password: password
 # These credentials should be changed ASAP for security purposes
 ```
 
+## :page_with_curl: Forms ##
+
+[Technical Form](https://forms.office.com/e/UK69dWwZde)
+[Non-Technical Form](https://forms.office.com/e/BBQQrLMByb)
+
 ## :memo: License ##
 
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
